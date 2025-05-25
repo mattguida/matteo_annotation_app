@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Instructions</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 40px auto;
+      max-width: 800px;
+      color: #222;
+      line-height: 1.6;
+      background-color: #f9f9f9;
+      padding: 20px 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgb(0 0 0 / 0.1);
+    }
+    h2 {
+      color: #2c3e50;
+      margin-bottom: 15px;
+    }
+    p {
+      margin-bottom: 12px;
+      font-size: 16px;
+    }
+    strong {
+      color: #34495e;
+    }
+    em {
+      font-style: italic;
+    }
+    a {
+      color: #2980b9;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    button {
+      background-color: #3498db;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 25px;
+      margin-right: 12px;
+      transition: background-color 0.3s ease;
+      box-shadow: 0 2px 6px rgb(52 152 219 / 0.4);
+    }
+    button:hover {
+      background-color: #2980b9;
+    }
+  </style>
+</head>
+<body>
+
+<div id="block1" class="instructions-block">
+  <h2>Understanding the Influence of News Framing on Readers</h2>
+  <p>Hi there! Thanks for agreeing to participate in this small annotation task.</p>
+  <p>In this project, we're investigating how the presentation of news affects readers' reactions and comments in terms of frames.</p>
+  <button onclick="showBlock(2)">Continue</button>
+</div>
+
+<div id="block2" class="instructions-block" style="display:none;">
+  <h2>What Are Frames?</h2>
+  <p>Frames are the perspectives or angles through which information is presented in media. They highlight certain aspects of an issue while downplaying others, influencing how audiences understand and respond to news.</p>
+  <p>Think of frames as different "lenses" that focus attention on specific elements of a story while leaving others in the background.</p>
+  <p>For example, same-sex marriage could be framed as a "human rights issue" emphasizing equality, or as a "religious/moral issue" emphasizing traditional values.</p>
+  <p>Frames answer the question: <em>"How is the issue at hand being presented?"</em></p>
+  <button onclick="showBlock(1)">Go Back</button>
+  <button onclick="showBlock(3)">Continue</button>
+</div>
+
+<div id="block3" class="instructions-block" style="display:none;">
+  <h2>Your Task</h2>
+  <p>Your task is to identify which frames are used in news articles and how these frames shape reader comments and reactions. This helps us understand the powerful relationship between how news is presented and how the public responds to it.</p>
+  <button onclick="showBlock(2)">Go Back</button>
+  <button onclick="showBlock(4)">Continue</button>
+</div>
+
+<div id="block4" class="instructions-block" style="display:none;">
+  <h2>How the Annotation Works</h2>
+  <p>You will see one sentence at a time. Please read each sentence carefully and choose the frame that best represents how the information is being conveyed by clicking on the corresponding label (colourful boxes).</p>
+  <p>If you think more than one frame applies, please select all that you believe are relevant.</p>
+  <p>If none of the provided categories apply, please select the label "No Frame".</p>
+  <p>The following page includes the framing labels, along with their definitions and an example for each.</p>
+  <p>Once you'll start annotating, you can click on the "Instructions" blue button on the right side of the page to retrieve this list.</p>
+  <button onclick="showBlock(3)">Go Back</button>
+  <button onclick="showBlock(5)">Continue</button>
+</div>
+
+<!-- Previously block 2: Framing Categories -->
+<div id="block5" class="instructions-block" style="display:none;">
+  <h2>Framing Categories</h2>
+  <p><strong>Economic</strong><br>
+  Description: The costs, benefits, or monetary/financial implications of the issue (to an individual, family, community, or to the economy as a whole).<br>
+  Example: Stories on same-sex marriage discussing the revenue states can gain or the cost to the state, or growth in wedding-related industries.</p>
+
+  <p><strong>Morality</strong><br>
+  Description: Any perspective—or policy objective or action (including proposed action)—that is compelled by religious doctrine or interpretation, duty, honor, righteousness or any other sense of ethics or social responsibility.<br>
+  Example: Defining same-sex marriage as against nature and immoral, not allowed by God; discussions of religious leaders or members of a congregation being punished for supporting same-sex marriage.</p>
+
+  <p><strong>Fairness and Equality</strong><br>
+  Description: Equality or inequality with which laws, punishment, rewards, and resources are applied or distributed among individuals or groups. Also the balance between the rights or interests of one individual or group compared to another individual or group.<br>
+  Example: Stories on immigration addressing the fairness of punishing undocumented immigrants who were brought to the country as children.</p>
+
+  <p><strong>Legality and Crime</strong><br>
+  Description: The constraints imposed on or freedoms granted to individuals, government, and corporations via laws, the Constitution, and judicial interpretation. Includes enforcement of laws, breaking laws, crime rates, sentencing, punishment, and legal consequences. Covers both the authority to regulate and the actual application/violation of rules.<br>
+  Example: Stories about same-sex marriage addressing the legality of propositions to ban it, or discussing penalties for selling cigarettes to minors.</p>
+
+  <p><strong>Health and Safety</strong><br>
+  Description: Healthcare access and effectiveness, illness, disease, sanitation, obesity, mental health effects, prevention of or perpetuation of gun violence, infrastructure and building safety.<br>
+  Example: A commentator says allowing same-sex marriage is an endorsement of unsafe sexual practices and will contribute to the spread of disease.</p>
+
+  <p><strong>Cultural Identity</strong><br>
+  Description: The social norms, trends, values and customs constituting culture(s).<br>
+  Example: References to "traditional family values" or cultural significance of practices and traditions.</p>
+
+  <p><strong>Public Opinion</strong><br>
+  Description: References to general social attitudes, polling and demographic information, as well as implied or actual consequences of diverging from or "getting ahead of" public opinion or polls.<br>
+  Example: Stories on same-sex marriage stressing the rapid shift in public sentiment on the issue recently, saying this seems to be a "turning point".</p>
+
+  <p><strong>Political and Policies</strong><br>
+  Description: Any political considerations and discourse surrounding an issue, as well as policies including partisan dynamics, lobbyist involvement, bipartisan efforts, political maneuvering, vote trading, and legislative processes.<br>
+  Example: Discussion of filibusters blocking immigration reform or running a candidate to capture a specific demographic.</p>
+
+  <p><strong>Security and Defense</strong><br>
+  Description: Concerns related to safety, protection from threats or of one's person, national security, border security, and measures taken to ensure stability and defense.<br>
+  Example: Discussion of border control measures in terms of protecting citizens from external threats.</p>
+
+  <p><strong>No Frame</strong><br>
+  Description: If the sentence is not framed in any of the proposed labels above, please select this label.</p>
+
+  <button onclick="showBlock(4)">Go Back</button>
+  <button onclick="showBlock(6)">Continue</button>
+</div>
+
+<!-- Final notes and Start button -->
+<div id="block6" class="instructions-block" style="display:none;">
+  <p>If you have any questions, please contact me at <a href="mailto:guida@student.unimelb.edu.au">guida@student.unimelb.edu.au</a>. You may skip any sentence by clicking the "Skip" button and return to it later.</p>
+  <p>For more information regarding the framing labels and theory, please refer to this <a href="URL-to-Codebook" target="_blank">Codebook</a> and this <a href="URL-to-paper" target="_blank">paper</a>.</p>
+
+  <button onclick="showBlock(5)">Go Back</button>
+  <button onclick="startAnnotation()">Start Annotation</button>
+</div>
+
+<script>
+  function showBlock(n) {
+    for (let i = 1; i <= 6; i++) {
+      document.getElementById('block' + i).style.display = i === n ? 'block' : 'none';
+    }
+  }
+
+  function startAnnotation() {
+    window.location.href = '/annotate'; // Update this to your actual path
+  }
+</script>
+
+</body>
+</html>

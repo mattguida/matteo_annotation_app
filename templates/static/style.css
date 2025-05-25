@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Annotation Interface</title>
+<style>
+  body { font-family: Arial, sans-serif; padding: 2rem; max-width: 600px; margin: auto; }
+  #sentence { font-size: 1.2rem; margin-bottom: 1rem; }
+  button { margin: 0.5rem; padding: 0.5rem 1rem; }
+</style>
+</head>
+<body>
+
+<h1>Sentence Annotation</h1>
+<div id="sentence">Loading sentence...</div>
+
+<div>
+  <label>
+    <input type="checkbox" id="tag1" /> Tag 1
+  </label>
+  <label>
+    <input type="checkbox" id="tag2" /> Tag 2
+  </label>
+  <label>
+    <input type="checkbox" id="tag3" /> Tag 3
+  </label>
+</div>
+
+<button id="prevBtn">Previous</button>
+<button id="nextBtn">Next</button>
+<button id="saveBtn">Save Annotation</button>
+
+<div id="status"></div>
+
+<script>
+  let sentences = [];
+  let currentIndex = 0;
+  let annotations = {};
+
+  async function loadSentences() {
+    // Load sentences from backend API
+    const res = await fetch("/api/sentences");
+    sentences = await res.json();
+    displaySentence();
+  }
+
+  function displaySentence() {
+    if (!sentences.length) {
+      document.getElementById("sentence").innerText = "No sentences loaded.";
+      return;
+    }
+    const sentence = sentences[currentIndex].sentence_text;
+    document.getElementById("sentence").innerText = sentence;
+
+    // Load existing annotations for current sentence
+    const ann = annotations[currentIndex] || {};
+    document.getElementById("tag1").checked = ann.tag1 || false;
+    document.getElementById("tag2").checked = ann.tag2 || false;
+    document.getElementById("tag3").checked = ann.tag3 || false;
+
+    document.getElementById("status").innerText = `Sentence ${currentIndex + 1} of ${sentences.length}`;
+  }
+
+  function saveAnnotation() {
+    annotations[currentIndex] = {
+      tag1: document.getElementById("tag1").checked,
+      tag2: document.getElementById("tag2").checked,
+      tag3: document.getElementById("tag3").checked
+    };
+    document.getElementById("status").innerText = "Annotation saved.";
+  }
+
+  function nextSentence() {
+    if (currentIndex < sentences.length - 1) {
+      currentIndex++;
+      displaySentence();
+    }
+  }
+
+  function prevSentence() {
+    if (currentIndex > 0) {
+      currentIndex--;
+      displaySentence();
+    }
+  }
+
+  document.getElementById("saveBtn").addEventListener("click", saveAnnotation);
+  document.getElementById("nextBtn").addEventListener("click", nextSentence);
+  document.getElementById("prevBtn").addEventListener("click", prevSentence);
+
+  loadSentences();
+</script>
+
+</body>
+</html>

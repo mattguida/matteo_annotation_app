@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Annotation Interface</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    padding: 2rem;
+    max-width: 600px;
+    margin: auto;
+    background: #f5f7fa;
+    color: #333;
+  }
+
+  /* Instructions button styling */
+  #instructions-btn {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    background: #2196f3;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    box-shadow: 0 3px 8px rgba(33, 150, 243, 0.4);
+    transition: all 0.3s ease;
+    z-index: 1000;
+  }
+
+  #instructions-btn:hover {
+    background: #1976d2;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 12px rgba(33, 150, 243, 0.6);
+  }
+
+  /* Modal styles */
+  #modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+  }
+
+  #modal-content {
+    background-color: #f9f9f9;
+    margin: 2% auto;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    width: 90%;
+    max-width: 800px;
+    max-height: 85vh;
+    overflow-y: auto;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #222;
+    line-height: 1.6;
+  }
+
+  #close-btn {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: -10px;
+    margin-right: -10px;
+  }
+
+  #close-btn:hover {
+    color: #000;
+  }
+
+  #modal h2 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+  }
+
+  #modal p {
+    margin-bottom: 12px;
+    font-size: 16px;
+  }
+
+  #modal strong {
+    color: #34495e;
+  }
+
+  #sentence {
+    font-size: 1.4rem;
+    font-weight: 600;
+    min-height: 3rem;
+    margin-bottom: 2.5rem;
+    padding: 1rem 2rem;
+    border: 2px solid #3f51b5;
+    border-radius: 50px;
+    background-color: #e8eaf6;
+    text-align: center;
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #labels {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  #labels > .none-container {
+    grid-column: 1 / 4;
+    display: flex;
+    justify-content: center;
+  }
+
+  #labels input[type="checkbox"] {
+    display: none;
+  }
+
+  #labels label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 1rem;
+    font-weight: 600;
+    border-radius: 10px;
+    user-select: none;
+    color: white;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+    font-size: 1.1rem;
+  }
+
+  label[for="Economic"] {
+    background: #f9a825;
+  }
+  label[for="Legality_Crime"] {
+    background: #00796b;
+  }
+  label[for="Health_Safety"] {
+    background: #388e3c;
+  }
+  label[for="Fairness_Equality"] {
+    background: #1976d2;
+  }
+  label[for="Security_Defense"] {
+    background: #7b1fa2;
+  }
+  label[for="Public_Opinion"] {
+    background: #e64a19;
+  }
+  label[for="Morality"] {
+    background: #c2185b;
+  }
+  label[for="Political_Policies"] {
+    background: #512da8;
+  }
+  label[for="Cultural_Identity"] {
+    background: #0288d1;
+  }
+
+  label[for="None"] {
+    background: #546e7a;
+    width: 150px;
+    justify-content: center;
+  }
+
+  #labels input[type="checkbox"]:checked + label {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+    filter: brightness(1.3);
+    color: #fff !important;
+    font-weight: 700;
+  }
+
+  button {
+    margin: 0.5rem 0.5rem 0 0;
+    padding: 0.7rem 1.2rem;
+    font-size: 1rem;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    background: #3f51b5;
+    color: white;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+    transition: background 0.3s ease;
+  }
+  button:hover {
+    background: #303f9f;
+  }
+
+  #status {
+    margin-top: 1rem;
+    font-weight: 600;
+    font-size: 1.1rem;
+    min-height: 1.5rem;
+  }
+
+  #annotator-info {
+    background: #e3f2fd;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    color: #1565c0;
+  }
+</style>
+</head>
+<body>
+
+<!-- Instructions button -->
+<button id="instructions-btn" onclick="openModal()">📋 Instructions</button>
+
+<!-- Modal for Framing Categories -->
+<div id="modal">
+  <div id="modal-content">
+    <span id="close-btn" onclick="closeModal()">&times;</span>
+    <h2>Framing Categories</h2>
+    <p><strong>Economic</strong><br>
+    Description: The costs, benefits, or monetary/financial implications of the issue (to an individual, family, community, or to the economy as a whole).<br>
+    Example: Stories on same-sex marriage discussing the revenue states can gain or the cost to the state, or growth in wedding-related industries.</p>
+
+    <p><strong>Morality</strong><br>
+    Description: Any perspective—or policy objective or action (including proposed action)—that is compelled by religious doctrine or interpretation, duty, honor, righteousness or any other sense of ethics or social responsibility.<br>
+    Example: Defining same-sex marriage as against nature and immoral, not allowed by God; discussions of religious leaders or members of a congregation being punished for supporting same-sex marriage.</p>
+
+    <p><strong>Fairness and Equality</strong><br>
+    Description: Equality or inequality with which laws, punishment, rewards, and resources are applied or distributed among individuals or groups. Also the balance between the rights or interests of one individual or group compared to another individual or group.<br>
+    Example: Stories on immigration addressing the fairness of punishing undocumented immigrants who were brought to the country as children.</p>
+
+    <p><strong>Legality and Crime</strong><br>
+    Description: The constraints imposed on or freedoms granted to individuals, government, and corporations via laws, the Constitution, and judicial interpretation. Includes enforcement of laws, breaking laws, crime rates, sentencing, punishment, and legal consequences. Covers both the authority to regulate and the actual application/violation of rules.<br>
+    Example: Stories about same-sex marriage addressing the legality of propositions to ban it, or discussing penalties for selling cigarettes to minors.</p>
+
+    <p><strong>Health and Safety</strong><br>
+    Description: Healthcare access and effectiveness, illness, disease, sanitation, obesity, mental health effects, prevention of or perpetuation of gun violence, infrastructure and building safety.<br>
+    Example: A commentator says allowing same-sex marriage is an endorsement of unsafe sexual practices and will contribute to the spread of disease.</p>
+
+    <p><strong>Cultural Identity</strong><br>
+    Description: The social norms, trends, values and customs constituting culture(s).<br>
+    Example: References to "traditional family values" or cultural significance of practices and traditions.</p>
+
+    <p><strong>Public Opinion</strong><br>
+    Description: References to general social attitudes, polling and demographic information, as well as implied or actual consequences of diverging from or "getting ahead of" public opinion or polls.<br>
+    Example: Stories on same-sex marriage stressing the rapid shift in public sentiment on the issue recently, saying this seems to be a "turning point".</p>
+
+    <p><strong>Security and Defense</strong><br>
+    Description: Concerns related to safety, protection from threats or of one's person, national security, border security, and measures taken to ensure stability and defense.<br>
+    Example: Discussion of border control measures in terms of protecting citizens from external threats.</p>
+
+    <p><strong>Political and Policies</strong><br>
+    Description: Any political considerations and discourse surrounding an issue, as well as policies including partisan dynamics, lobbyist involvement, bipartisan efforts, political maneuvering, vote trading, and legislative processes.<br>
+    Example: Discussion of filibusters blocking immigration reform or running a candidate to capture a specific demographic.</p>
+
+    <p><strong>None</strong><br>
+    Description: If the sentence is not framed in any of the proposed labels above, please select this label.</p>
+  </div>
+</div>
+
+<input type="hidden" id="annotator-id" />
+<input type="hidden" id="dataset-name" />
+
+<div id="sentence">Loading sentence...</div>
+
+<div id="labels">
+  <input type="checkbox" id="Economic" />
+  <label for="Economic">Economic</label>
+
+  <input type="checkbox" id="Legality_Crime" />
+  <label for="Legality_Crime">Legality-Crime</label>
+
+  <input type="checkbox" id="Health_Safety" />
+  <label for="Health_Safety">Health and Safety</label>
+
+  <input type="checkbox" id="Fairness_Equality" />
+  <label for="Fairness_Equality">Fairness and Equality</label>
+
+  <input type="checkbox" id="Security_Defense" />
+  <label for="Security_Defense">Security and Defense</label>
+
+  <input type="checkbox" id="Public_Opinion" />
+  <label for="Public_Opinion">Public Opinion</label>
+
+  <input type="checkbox" id="Morality" />
+  <label for="Morality">Morality</label>
+
+  <input type="checkbox" id="Political_Policies" />
+  <label for="Political_Policies">Political and Policies</label>
+
+  <input type="checkbox" id="Cultural_Identity" />
+  <label for="Cultural_Identity">Cultural Identity</label>
+
+  <div class="none-container">
+    <input type="checkbox" id="None" />
+    <label for="None">None</label>
+  </div>
+
+</div>
+
+<button id="prevBtn">Previous</button>
+<button id="nextBtn">Next</button>
+
+<div id="status"></div>
+
+<script>
+  let sentences = [];
+  let currentIndex = 0;
+  let annotations = {};
+  let annotatorId = null;
+  let datasetFile = null;
+
+  // Function to open modal with framing categories
+  function openModal() {
+    document.getElementById('modal').style.display = 'block';
+  }
+
+  // Function to close modal
+  function closeModal() {
+    document.getElementById('modal').style.display = 'none';
+  }
+
+  // Close modal when clicking outside of it
+  window.onclick = function(event) {
+    const modal = document.getElementById('modal');
+    if (event.target === modal) {
+      closeModal();
+    }
+  };
+
+  // Initialize session first
+  async function initializeSession() {
+    try {
+      const res = await fetch("/start_annotation");
+      if (!res.ok) throw new Error("Failed to start annotation session");
+      const sessionData = await res.json();
+      
+      annotatorId = sessionData.annotator_id;
+      
+      document.getElementById("annotator-id").innerText = annotatorId;
+      document.getElementById("dataset-name").innerText = `${sessionData.total_sentences} sentences (${sessionData.overlap_sentences} overlap + ${sessionData.unique_sentences} unique)`;
+      
+      // Now load sentences
+      await loadSentences();
+    } catch (error) {
+      document.getElementById("sentence").innerText = "Error starting annotation session.";
+      console.error(error);
+    }
+  }
+
+  async function loadSentences() {
+    try {
+      const res = await fetch(`/api/sentences?annotator_id=${annotatorId}`);
+      if (!res.ok) throw new Error("Failed to load sentences");
+      sentences = await res.json();
+      if (!sentences.length) {
+        document.getElementById("sentence").innerText = "No sentences loaded.";
+        return;
+      }
+      displaySentence();
+    } catch (error) {
+      document.getElementById("sentence").innerText = "Error loading sentences.";
+      console.error(error);
+    }
+  }
+
+  function displaySentence() {
+    const sentence = sentences[currentIndex].sentence_text;
+    document.getElementById("sentence").innerText = sentence;
+
+    const ann = annotations[currentIndex] || {};
+    const labels = getAllLabels();
+    labels.forEach(label => {
+      const el = document.getElementById(label);
+      if (el) el.checked = ann[label] || false;
+    });
+
+    document.getElementById("status").innerText = `Sentence ${currentIndex + 1} of ${sentences.length}`;
+  }
+
+  // Get current labels checked as object
+  function gatherCurrentAnnotation() {
+    const labels = getAllLabels();
+    const ann = {};
+    labels.forEach(label => {
+      const el = document.getElementById(label);
+      ann[label] = el ? el.checked : false;
+    });
+    return ann;
+  }
+
+  // Save annotation for current sentence via POST to backend
+  async function saveAnnotation() {
+    const labelAnnotation = gatherCurrentAnnotation();
+
+    // Save locally (optional)
+    annotations[currentIndex] = labelAnnotation;
+
+    // Prepare payload with correct structure
+    const payload = {
+      annotator_id: annotatorId,
+      sentence: sentences[currentIndex].sentence_text,
+      label: labelAnnotation
+    };
+
+    try {
+      document.getElementById("status").innerText = "Saving annotation...";
+      const res = await fetch("/api/save_annotation", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) {
+        throw new Error("Failed to save annotation");
+      }
+      document.getElementById("status").innerText = `Annotation saved (Sentence ${currentIndex + 1})`;
+    } catch (error) {
+      console.error(error);
+      document.getElementById("status").innerText = "Error saving annotation. Please try again.";
+    }
+  }
+
+  function getAllLabels() {
+    return [
+      "Economic",
+      "Legality_Crime",
+      "Health_Safety",
+      "Fairness_Equality",
+      "Security_Defense",
+      "Public_Opinion",
+      "Morality",
+      "Political_Policies",
+      "Cultural_Identity",
+      "None"
+    ];
+  }
+
+  // Handle "None" checkbox logic
+  document.getElementById("None").addEventListener("change", function () {
+    if (this.checked) {
+      getAllLabels().forEach(label => {
+        if (label !== "None") {
+          const el = document.getElementById(label);
+          if (el) el.checked = false;
+        }
+      });
+    }
+  });
+
+  // Handle other checkboxes unchecking "None"
+  getAllLabels().forEach(label => {
+    const el = document.getElementById(label);
+    if (el && label !== "None") {
+      el.addEventListener("change", function () {
+        if (this.checked) {
+          document.getElementById("None").checked = false;
+        }
+      });
+    }
+  });
+
+  async function nextSentence() {
+    await saveAnnotation();
+
+    if (currentIndex < sentences.length - 1) {
+        currentIndex++;
+        displaySentence();
+    } else {
+        document.getElementById("sentence").innerText = "🎉 You have finished annotating all sentences. 🎉 Thank you! You may now close this window.";
+        document.getElementById("labels").style.display = "none";
+        document.getElementById("nextBtn").style.display = "none";
+        document.getElementById("prevBtn").style.display = "none";
+        document.getElementById("status").innerText = "";
+    }
+  }
+
+  async function prevSentence() {
+    await saveAnnotation();
+    if (currentIndex > 0) {
+      currentIndex--;
+      displaySentence();
+    }
+  }
+
+  document.getElementById("nextBtn").addEventListener("click", nextSentence);
+  document.getElementById("prevBtn").addEventListener("click", prevSentence);
+
+  // Start the application
+  initializeSession();
+</script>
+</body>
+</html>

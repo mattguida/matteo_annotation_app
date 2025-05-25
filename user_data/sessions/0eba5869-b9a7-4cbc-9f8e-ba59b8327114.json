@@ -1,0 +1,510 @@
+{
+  "annotator_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114",
+  "total_sentences": 50,
+  "overlap_sentences": [
+    {
+      "sentence_text": "It is interesting that the New Soviet Man who 'evolved' after 75 years of Communism and Scientific Socialism is really the same old pathetic Russian peasant.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent44",
+      "is_overlap": true
+    },
+    {
+      "sentence_text": "The political and logistical challenges - imagine Caledonia times five or 10 - would be formidable and the political fallout so substantial that it could easily prove to be destabilizing on a national scale.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent9",
+      "is_overlap": true
+    },
+    {
+      "sentence_text": "One night, I was standing guard at the corner of Obispo and Oficios when a supposedly U.S. military plane flew over Havana.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent38",
+      "is_overlap": true
+    },
+    {
+      "sentence_text": "'It is a business, because it has to be - meaning that it covers its costs, it makes a profit.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent46",
+      "is_overlap": true
+    },
+    {
+      "sentence_text": "He raised the prospect that Canada would 'not hesitate to defend its interests' if 'unjust, discriminatory measures ... are put in place.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent14",
+      "is_overlap": true
+    },
+    {
+      "sentence_text": "Not a great outcome for the taxpayer, but the point is they figured out what was wrong and that it was going to collapse by getting out and talking to people on the ground and investigating on their own.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent1",
+      "is_overlap": true
+    },
+    {
+      "sentence_text": "That's because of its fundamental missions not compatible to Canada, because strong stealth is highly vulnerable to future detection technology.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent47",
+      "is_overlap": true
+    },
+    {
+      "sentence_text": "Given these grim numbers, it makes no sense to discuss saving the lives of women and girls without talking about access to abortion.Mr.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent45",
+      "is_overlap": true
+    },
+    {
+      "sentence_text": "The first 4 years of university should be free, as even with this it is not usually enough for a decent job.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent20",
+      "is_overlap": true
+    },
+    {
+      "sentence_text": "...and this from the same government that is funding trade schools in the Philippines to train people there to come here as TFW's so that they can displace Canadian workers.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent48",
+      "is_overlap": true
+    }
+  ],
+  "unique_sentences": [
+    {
+      "sentence_text": "Many are aware of the challenegs they face but many are still willing to throw out the victim card, race card, residential school card and the treaty rights card.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent24",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "In foreign affairs, as Mr. Newton notes, he was too enamoured of covert action of the type that overthrew, in 1952, a democratically elected regime in Iran.But over all, his middle way was well favoured.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent6",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "China's trade does a lot more for economic growth (they build roads and rail in Africa, which improves access to markets, schools, healthcare, etc for millions of people).",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent2",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "The fembot running (via Chipotle) for the White House gave proof of that when she recently popped up in Iowa vowing to fight for the 'everyday' folk who politicians up here still call the middle class.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent32",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "If we want people to stop dying from drug overdoses the only answer is to provide safe drugs at a cost lower than it can be purchased on the street.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent27",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "New federal money is probably a crack pipe dream and Wynne has already said there is no new provincial money coming.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent26",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "All that is needed now is to consolidate the various ministries -- I am sure 'Truth' will be the first new agency, followed no doubt by 'Love' and 'Peace'.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent21",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "And as pointed out in the article, it did matter and the coalition did notice; contrary to what the Canadian politicians were saying at the time....",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent11",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "Christmas is a secular holiday in Canada for family and friends and it only a religious one for those that attend some sort of church or place of worship during the holidays..",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent5",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "Apportioning the undecided to the two camps produced 34 per cent for Yes and 66 per cent for No.Think about those numbers.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent7",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "A massive effort to evacuate 'Canadians' from Lebanon, most of which had not maintained residence in the country for more than three weeks out of the prior ten years.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent25",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "If you are a parent that supports the health of your child, this is something you should be supporting, not negating.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent4",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "We all use fossil fuels and benefit hugely from the oil and gas industry, and until there is a viable affordable alternative, we will keep using it.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent3",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "First question he will have when sitting in the Big Oval Office Chair will surely be 'Where's the Nuke-EM Button?'",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent13",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "It's possible that the accommodations required will be so at odds with their self-interest that they won't, and instead watch bitterly as country after country opts out.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent29",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "'Well perhaps instead of bizarrely taking that as a reason for dismissing a referendum you might show some respect for Canadians and believe that they may actually know what they want.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent35",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "In an act of unparalleled frivolity, a majority of the British public have just taken a giant step closer to that fate.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent40",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "The U.S. has declared that the Senkaku Islands (administered by the Okinawa Prefecture when it was returned to Japan in 1972) are covered by the U.S.-Japan security treaty.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent28",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "Again, after the Second World War, Japan underwent another basic shift under U.S. occupation.Both events demonstrated the incredible cohesiveness of Japanese society, a cohesiveness that underlies the ability to undergo revolutionary change without total social upheaval.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent41",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "Even if it's not a matter of ethnic difference (which mostly boils down to being raised with different customs), all of us are unique.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent37",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "but as too many university girls joined the other team that too became as fashionable as last year's party frocks.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent22",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "Taxi drivers say they simply can't compete with freelancers who don't carry commercial insurance and aren't made to play by the same rules.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent30",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "Perhaps the Americans should take dynamite to Mount Rushmore: The four white men depicted there are clearly not representative of American diversity.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent34",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "'Discussion has turned to bringing the tabled text from the conference - with a few widely supported improvements - to the UN General Assembly later this year, where it can pass with a majority vote of member states.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent19",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "If we want to sell our oil, we have to get our heads out of the oil sands and our minds out of our wallets.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent23",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "It welcomes doing business with CNOOC or other Chinese SOEs and expanding trade with China through a variety of commercial arrangements on a dozen fronts.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent36",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "And contrary to the Flemish, the Catalans and the Basques, the Scots speak an international language - they had no reason to fear cultural isolation.So if Scotland's nationalists couldn't win, who could?",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent43",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "Canada is the largest donor nation in terms of foreign aid to Burkina Faso after France and Canadian special forces have participated in Mali over the last couple of summers to help train the armies of Mali, Niger etc.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent31",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "April 23rd Lysiane xenophobe Gagnon featured PKP for PQ leadership to make sure she would attempt to aim at his credibility in later days.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent8",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "To quote Juan Cole 'France is a country of 66 million, of which about 5 million is of Muslim heritage.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent12",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "In a country that should be one of the great agricultural exporters of the Americas, he turned farming into a non-viable business by subsidizing consumption and controlling prices, and converted large swathes of commercial-agriculture land back into subsistence-level peasant farms.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent15",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "The English, however, could not be bothered as, for the most part, the traditional unitary state (with its essentially English nature) fitted their needs and aspirations.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent33",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "Retailers need to raise their standards for the manufacturers, they also need to monitor the plants on a regular basis.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent18",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "The unfortunate fall-out of Trump's election is that we will now find ourselves faced with having to experience years of main-stream media anti-Trump fear mongering, far, far worse than that they accuse of Trump.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent10",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "Among the most popular with a core group of Liberal and NDP voters was the pledge to 'repeal the problematic elements of Bill C-51, and introduce new legislation that better balances our collective security with our rights and freedoms.'",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent42",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "'The Senate blueprint, released on Monday by four Republican and four Democrat senators, outlines the need to first crack down on illegal immigration, as well as on employers who knowingly hire those without work papers.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent49",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "...'If I were a young black man imprisoned in South Africa,' he added, 'I would support those who supported me.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent17",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "For some reason, this public-health calamity has failed to galvanize the country's attention, certainly not like the great SARS panic of 2003 did.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent50",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "I would say the same of people who plan ahead for where they'll be spending eternity after they pass out of this life.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent39",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "What about the US model - prostitution completely illegal (except parts of Nevada) but prostitution is flourishing in the States.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent16",
+      "is_overlap": false
+    }
+  ],
+  "dataset": [
+    {
+      "sentence_text": "Not a great outcome for the taxpayer, but the point is they figured out what was wrong and that it was going to collapse by getting out and talking to people on the ground and investigating on their own.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent1",
+      "is_overlap": true
+    },
+    {
+      "sentence_text": "China's trade does a lot more for economic growth (they build roads and rail in Africa, which improves access to markets, schools, healthcare, etc for millions of people).",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent2",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "We all use fossil fuels and benefit hugely from the oil and gas industry, and until there is a viable affordable alternative, we will keep using it.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent3",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "If you are a parent that supports the health of your child, this is something you should be supporting, not negating.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent4",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "Christmas is a secular holiday in Canada for family and friends and it only a religious one for those that attend some sort of church or place of worship during the holidays..",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent5",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "In foreign affairs, as Mr. Newton notes, he was too enamoured of covert action of the type that overthrew, in 1952, a democratically elected regime in Iran.But over all, his middle way was well favoured.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent6",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "Apportioning the undecided to the two camps produced 34 per cent for Yes and 66 per cent for No.Think about those numbers.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent7",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "April 23rd Lysiane xenophobe Gagnon featured PKP for PQ leadership to make sure she would attempt to aim at his credibility in later days.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent8",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "The political and logistical challenges - imagine Caledonia times five or 10 - would be formidable and the political fallout so substantial that it could easily prove to be destabilizing on a national scale.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent9",
+      "is_overlap": true
+    },
+    {
+      "sentence_text": "The unfortunate fall-out of Trump's election is that we will now find ourselves faced with having to experience years of main-stream media anti-Trump fear mongering, far, far worse than that they accuse of Trump.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent10",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "And as pointed out in the article, it did matter and the coalition did notice; contrary to what the Canadian politicians were saying at the time....",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent11",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "To quote Juan Cole 'France is a country of 66 million, of which about 5 million is of Muslim heritage.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent12",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "First question he will have when sitting in the Big Oval Office Chair will surely be 'Where's the Nuke-EM Button?'",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent13",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "He raised the prospect that Canada would 'not hesitate to defend its interests' if 'unjust, discriminatory measures ... are put in place.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent14",
+      "is_overlap": true
+    },
+    {
+      "sentence_text": "In a country that should be one of the great agricultural exporters of the Americas, he turned farming into a non-viable business by subsidizing consumption and controlling prices, and converted large swathes of commercial-agriculture land back into subsistence-level peasant farms.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent15",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "What about the US model - prostitution completely illegal (except parts of Nevada) but prostitution is flourishing in the States.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent16",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "...'If I were a young black man imprisoned in South Africa,' he added, 'I would support those who supported me.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent17",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "Retailers need to raise their standards for the manufacturers, they also need to monitor the plants on a regular basis.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent18",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "'Discussion has turned to bringing the tabled text from the conference - with a few widely supported improvements - to the UN General Assembly later this year, where it can pass with a majority vote of member states.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent19",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "The first 4 years of university should be free, as even with this it is not usually enough for a decent job.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent20",
+      "is_overlap": true
+    },
+    {
+      "sentence_text": "All that is needed now is to consolidate the various ministries -- I am sure 'Truth' will be the first new agency, followed no doubt by 'Love' and 'Peace'.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent21",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "but as too many university girls joined the other team that too became as fashionable as last year's party frocks.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent22",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "If we want to sell our oil, we have to get our heads out of the oil sands and our minds out of our wallets.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent23",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "Many are aware of the challenegs they face but many are still willing to throw out the victim card, race card, residential school card and the treaty rights card.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent24",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "A massive effort to evacuate 'Canadians' from Lebanon, most of which had not maintained residence in the country for more than three weeks out of the prior ten years.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent25",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "New federal money is probably a crack pipe dream and Wynne has already said there is no new provincial money coming.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent26",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "If we want people to stop dying from drug overdoses the only answer is to provide safe drugs at a cost lower than it can be purchased on the street.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent27",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "The U.S. has declared that the Senkaku Islands (administered by the Okinawa Prefecture when it was returned to Japan in 1972) are covered by the U.S.-Japan security treaty.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent28",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "It's possible that the accommodations required will be so at odds with their self-interest that they won't, and instead watch bitterly as country after country opts out.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent29",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "Taxi drivers say they simply can't compete with freelancers who don't carry commercial insurance and aren't made to play by the same rules.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent30",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "Canada is the largest donor nation in terms of foreign aid to Burkina Faso after France and Canadian special forces have participated in Mali over the last couple of summers to help train the armies of Mali, Niger etc.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent31",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "The fembot running (via Chipotle) for the White House gave proof of that when she recently popped up in Iowa vowing to fight for the 'everyday' folk who politicians up here still call the middle class.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent32",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "The English, however, could not be bothered as, for the most part, the traditional unitary state (with its essentially English nature) fitted their needs and aspirations.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent33",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "Perhaps the Americans should take dynamite to Mount Rushmore: The four white men depicted there are clearly not representative of American diversity.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent34",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "'Well perhaps instead of bizarrely taking that as a reason for dismissing a referendum you might show some respect for Canadians and believe that they may actually know what they want.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent35",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "It welcomes doing business with CNOOC or other Chinese SOEs and expanding trade with China through a variety of commercial arrangements on a dozen fronts.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent36",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "Even if it's not a matter of ethnic difference (which mostly boils down to being raised with different customs), all of us are unique.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent37",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "One night, I was standing guard at the corner of Obispo and Oficios when a supposedly U.S. military plane flew over Havana.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent38",
+      "is_overlap": true
+    },
+    {
+      "sentence_text": "I would say the same of people who plan ahead for where they'll be spending eternity after they pass out of this life.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent39",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "In an act of unparalleled frivolity, a majority of the British public have just taken a giant step closer to that fate.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent40",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "Again, after the Second World War, Japan underwent another basic shift under U.S. occupation.Both events demonstrated the incredible cohesiveness of Japanese society, a cohesiveness that underlies the ability to undergo revolutionary change without total social upheaval.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent41",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "Among the most popular with a core group of Liberal and NDP voters was the pledge to 'repeal the problematic elements of Bill C-51, and introduce new legislation that better balances our collective security with our rights and freedoms.'",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent42",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "And contrary to the Flemish, the Catalans and the Basques, the Scots speak an international language - they had no reason to fear cultural isolation.So if Scotland's nationalists couldn't win, who could?",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent43",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "It is interesting that the New Soviet Man who 'evolved' after 75 years of Communism and Scientific Socialism is really the same old pathetic Russian peasant.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent44",
+      "is_overlap": true
+    },
+    {
+      "sentence_text": "Given these grim numbers, it makes no sense to discuss saving the lives of women and girls without talking about access to abortion.Mr.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent45",
+      "is_overlap": true
+    },
+    {
+      "sentence_text": "'It is a business, because it has to be - meaning that it covers its costs, it makes a profit.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent46",
+      "is_overlap": true
+    },
+    {
+      "sentence_text": "That's because of its fundamental missions not compatible to Canada, because strong stealth is highly vulnerable to future detection technology.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent47",
+      "is_overlap": true
+    },
+    {
+      "sentence_text": "...and this from the same government that is funding trade schools in the Philippines to train people there to come here as TFW's so that they can displace Canadian workers.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent48",
+      "is_overlap": true
+    },
+    {
+      "sentence_text": "'The Senate blueprint, released on Monday by four Republican and four Democrat senators, outlines the need to first crack down on illegal immigration, as well as on employers who knowingly hire those without work papers.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent49",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "For some reason, this public-health calamity has failed to galvanize the country's attention, certainly not like the great SARS panic of 2003 did.",
+      "sentence_id": "0eba5869-b9a7-4cbc-9f8e-ba59b8327114_sent50",
+      "is_overlap": false
+    }
+  ]
+}

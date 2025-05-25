@@ -1,0 +1,52 @@
+[
+  {
+    "sentence_text": "The news that the Canadian military is testing a prototype stealth snowmobile for use in the Far North raises two critical questions of national interest: Exactly whom does the army need to sneak up on in the Arctic?",
+    "sentence_id": "user1_sent1",
+    "is_overlap": false
+  },
+  {
+    "sentence_text": "The political and logistical challenges - imagine Caledonia times five or 10 - would be formidable and the political fallout so substantial that it could easily prove to be destabilizing on a national scale.",
+    "sentence_id": "user1_sent2",
+    "is_overlap": false
+  },
+  {
+    "sentence_text": "Lucky enough to have my own house, dividing it and using the rental half as retirement income is on the books (plan C, I think).",
+    "sentence_id": "user1_sent3",
+    "is_overlap": false
+  },
+  {
+    "sentence_text": "Ontario's Health Minister seems more interested in his hair than his responsibilities to properly resource hospitals and ensure access to urgent care.",
+    "sentence_id": "user1_sent4",
+    "is_overlap": true
+  },
+  {
+    "sentence_text": "Shortly after Carney's name arose as a possible Liberal leader, Harper forced Carney to leave his post at the Bank of Canada.",
+    "sentence_id": "user1_sent5",
+    "is_overlap": false
+  },
+  {
+    "sentence_text": "But such a shortage isn't 'looming' at all; it's already here, especially in Western Canada, where a lack of appropriate applicants is the largest challenge facing employers.",
+    "sentence_id": "user1_sent6",
+    "is_overlap": true
+  },
+  {
+    "sentence_text": "Mentally and emotionally stunted, physically malnourished, dumped on one relative after another -- wanted by none; always at risk for abuse; booze, drugs and alcohol more plentiful than food.",
+    "sentence_id": "user1_sent7",
+    "is_overlap": false
+  },
+  {
+    "sentence_text": "Then they came out with vaccines for more common illnesses such as chicken pox and the annual campaign for influenza (and a few others that had a smaller risk of causing harm).",
+    "sentence_id": "user1_sent8",
+    "is_overlap": false
+  },
+  {
+    "sentence_text": "'Chimed in mild-mannered Mr. Kent's Daily Planet colleague Michelle Rempel: 'A carbon tax is a tax on everything, that would hurt jobs in this country, and our government will not do that.",
+    "sentence_id": "user1_sent9",
+    "is_overlap": false
+  },
+  {
+    "sentence_text": "It's not so much that they're anti-woman as that a candidate's rightwing views trump any other factors (even the risk of his being found ineligible.",
+    "sentence_id": "user1_sent10",
+    "is_overlap": false
+  }
+]

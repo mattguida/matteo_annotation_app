@@ -1,0 +1,52 @@
+[
+  {
+    "sentence_text": "Although prices have been reduced for new contracts, the resulting excess supply has led to a circumstance in which wind regularly displaces hydro and nuclear generation, neither of which produce greenhouse gases.",
+    "sentence_id": "user2_sent1",
+    "is_overlap": false
+  },
+  {
+    "sentence_text": "Ontario's Health Minister seems more interested in his hair than his responsibilities to properly resource hospitals and ensure access to urgent care.",
+    "sentence_id": "user2_sent2",
+    "is_overlap": true
+  },
+  {
+    "sentence_text": "To quote Juan Cole 'France is a country of 66 million, of which about 5 million is of Muslim heritage.",
+    "sentence_id": "user2_sent3",
+    "is_overlap": false
+  },
+  {
+    "sentence_text": "It's high time that Canada and the provinces clarified the economic costs and benefits of the water used by citizens and businesses.",
+    "sentence_id": "user2_sent4",
+    "is_overlap": false
+  },
+  {
+    "sentence_text": "There is lots of legislation that I don't like either, some coming from governments that I deeply dislike, such as the current one in Ottawa.",
+    "sentence_id": "user2_sent5",
+    "is_overlap": false
+  },
+  {
+    "sentence_text": "It's really impossible to appreciate the lunacy of Toronto's politics unless you live here.Personally, I don't feel strongly about plastic bags.",
+    "sentence_id": "user2_sent6",
+    "is_overlap": false
+  },
+  {
+    "sentence_text": "Just suck everything you can out of the company now and maybe sell it once it reaches a certain size.",
+    "sentence_id": "user2_sent7",
+    "is_overlap": false
+  },
+  {
+    "sentence_text": "Kind of like their phonet gun registry program was going to end crime even though criminals would never register their guns.",
+    "sentence_id": "user2_sent8",
+    "is_overlap": false
+  },
+  {
+    "sentence_text": "But such a shortage isn't 'looming' at all; it's already here, especially in Western Canada, where a lack of appropriate applicants is the largest challenge facing employers.",
+    "sentence_id": "user2_sent9",
+    "is_overlap": true
+  },
+  {
+    "sentence_text": "But, I am more bitter that Stephen Harper - the anti-data, anti-science, cheapskate research funder- will claim this as his personal victory and a sign of his commitment to the north.",
+    "sentence_id": "user2_sent10",
+    "is_overlap": false
+  }
+]

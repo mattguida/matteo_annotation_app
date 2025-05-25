@@ -1,0 +1,510 @@
+{
+  "annotator_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900",
+  "total_sentences": 50,
+  "overlap_sentences": [
+    {
+      "sentence_text": "It is interesting that the New Soviet Man who 'evolved' after 75 years of Communism and Scientific Socialism is really the same old pathetic Russian peasant.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent24",
+      "is_overlap": true
+    },
+    {
+      "sentence_text": "The political and logistical challenges - imagine Caledonia times five or 10 - would be formidable and the political fallout so substantial that it could easily prove to be destabilizing on a national scale.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent50",
+      "is_overlap": true
+    },
+    {
+      "sentence_text": "One night, I was standing guard at the corner of Obispo and Oficios when a supposedly U.S. military plane flew over Havana.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent38",
+      "is_overlap": true
+    },
+    {
+      "sentence_text": "'It is a business, because it has to be - meaning that it covers its costs, it makes a profit.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent25",
+      "is_overlap": true
+    },
+    {
+      "sentence_text": "He raised the prospect that Canada would 'not hesitate to defend its interests' if 'unjust, discriminatory measures ... are put in place.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent39",
+      "is_overlap": true
+    },
+    {
+      "sentence_text": "Not a great outcome for the taxpayer, but the point is they figured out what was wrong and that it was going to collapse by getting out and talking to people on the ground and investigating on their own.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent37",
+      "is_overlap": true
+    },
+    {
+      "sentence_text": "That's because of its fundamental missions not compatible to Canada, because strong stealth is highly vulnerable to future detection technology.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent35",
+      "is_overlap": true
+    },
+    {
+      "sentence_text": "Given these grim numbers, it makes no sense to discuss saving the lives of women and girls without talking about access to abortion.Mr.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent34",
+      "is_overlap": true
+    },
+    {
+      "sentence_text": "The first 4 years of university should be free, as even with this it is not usually enough for a decent job.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent5",
+      "is_overlap": true
+    },
+    {
+      "sentence_text": "...and this from the same government that is funding trade schools in the Philippines to train people there to come here as TFW's so that they can displace Canadian workers.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent46",
+      "is_overlap": true
+    }
+  ],
+  "unique_sentences": [
+    {
+      "sentence_text": "For all his considerable talent at cutting costs, he is not considered a visionary who anticipates the future before the competition.One has to wonder what Quebecor would have become had Videotron not landed in its lap.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent33",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "The whisky Jack shows up in many Canadian history stories and was well known by explorers and pioneers as a great nuisance because it was bothersome and would steal the food right out of your mouth.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent47",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "The San Bernardino couple's arsenal of guns and ammo was, as a writer for The Nation put it, 'as American as apple pie.'",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent7",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "It welcomes doing business with CNOOC or other Chinese SOEs and expanding trade with China through a variety of commercial arrangements on a dozen fronts.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent14",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "Administrations from all levels of government across theh political spectrum have routinely ignored it since the day it was built.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent22",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "The right to equal treatment regardless of race (section 15), the right to life (section 7)?And does traditional medicine include a quack in Florida?",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent6",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "This new model would be a student-and-parent focused, competitive model that would exclude unions who assure that all of the excessively pamperedteachers receive the same pay/benefits as the most incompetent teacher.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent3",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "Where does Wynne think she is going to come up with the hundreds of billions of dollars required to connect the north with high voltage power lines across the boreal forest and northern shield?",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent28",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "Extreme weather events due to climate change are already taking a huge toll on many nations and causing countless premature deaths.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent44",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "He had arrived at the federal facility a month earlier after being transferred from Stony Mountain Institution, another federal prison where he had already spent 134 days in isolation.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent10",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "(HIV-AIDS tends to hit people in young adulthood, when they have children, and those children are often left to the care of grandparents or, more specifically, grandmothers.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent4",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "laws allowing them to shut down many forms of dissent, opposition, journalism and scrutiny, and to punish their political opponents ?",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent1",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "We can no longer afford to to put public sector workers on retirement benefits of 60-80% of income between the ages of 45-60.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent49",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "Given the limited number of psychiatrists., and this article advocates fewer, the waits for prescription medicine could be much too long.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent19",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "Even if it's not a matter of ethnic difference (which mostly boils down to being raised with different customs), all of us are unique.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent8",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "Once Trump is in power, it is hoped that a review is carried out and the politicized and corrupted CIA personnel removed...",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent11",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "Stephen Harper's Conservatives, should we go by oversimplified stereotypes, are the party that never saw a war it didn't like.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent16",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "Yet these are exactly the troubling issues the committee is, or should be, trying to rectify.There are multiple glaring obstacles preventing MPs from overseeing the public purse.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent36",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "As there's no way of knowing whether he was killed in the first or second volley, there is no way of deciding between acquittal or conviction for murder.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent12",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "Indeed, Russia's use of R2P-type language is all the more precarious in that at least part of the threat posed to Ukrainians stems from Russia itself.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent42",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "So as someone of qu?b?cois ancestry, I guess I should be enraged that the nickname for the Canadiens is the Habs.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent9",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "For women who have to return to work just weeks after giving birth, and do not have time to use a breast pump at the office, formula can be a life-saving supplement.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent31",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "If, like Harper, you're going to be a provocative bully and a braggart, you better have the muscle to back it up.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent29",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "When the cop tells him to walk on the sidewalk instead of the middle of the street, he charges the police car, swears at the cop and tries to grab his gun.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent21",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "They get added for us, usually by Mayor and council who ring us up and say you will now cover this contingency.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent26",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "'He also added he found it 'very, very scary' that government could strip new Canadians of their citizenship rights because of unlawful actions.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent18",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "If so, the generals are not alone in their delusions.In the absence of any real answers from the federal government, we are left with a vacuum.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent20",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "We do not dismiss teenage drinking and driving fatalities as nothing more than typical teenage momentary bad judgment: we impose serious criminal penalties.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent2",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "As both citizens and consumers, Canadians do want to see themselves reflected in the books and magazines they read, the TV they watch and the music they hear.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent41",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "Ontario's Health Minister seems more interested in his hair than his responsibilities to properly resource hospitals and ensure access to urgent care.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent17",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "That is why Toronto Police Service Constable James Forcillo was charged with fatally shooting Sammy Yatim, and why on Monday a jury found him guilty of attempted murder.Leaving aside the question of whether Const.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent40",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "For some reason, this public-health calamity has failed to galvanize the country's attention, certainly not like the great SARS panic of 2003 did.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent32",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "Trump has, of course, said many worrisome things during his run for the Republican nomination but his musings about NATO should not be dismissed lightly.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent30",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "...'If I were a young black man imprisoned in South Africa,' he added, 'I would support those who supported me.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent48",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "The obese and the smokers and the booze hounds will take themselves out by their mid 50's, long before they become a real drain on our health care dollars.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent13",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "the harper government is to democracy what the chip away virus was to computer integrityslowly but surely they destroy from within",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent43",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "However, China's GDP has spiralled from $500-billion (U.S.) in 1982 to more than $9-trillion in 2013 - and its massive trade and investment footprint continues to increase.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent23",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "Maybe now, like Canada, Britain can make trade deals with the European Union (EU) and take advantage of the millions of people in that huge trading block.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent45",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "It's possible that the accommodations required will be so at odds with their self-interest that they won't, and instead watch bitterly as country after country opts out.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent27",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "Eating pesticide drenched food and/or highly processed pre-made microwavable food (or Mcd's) versus having a few glasses a week while pregnant.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent15",
+      "is_overlap": false
+    }
+  ],
+  "dataset": [
+    {
+      "sentence_text": "laws allowing them to shut down many forms of dissent, opposition, journalism and scrutiny, and to punish their political opponents ?",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent1",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "We do not dismiss teenage drinking and driving fatalities as nothing more than typical teenage momentary bad judgment: we impose serious criminal penalties.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent2",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "This new model would be a student-and-parent focused, competitive model that would exclude unions who assure that all of the excessively pamperedteachers receive the same pay/benefits as the most incompetent teacher.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent3",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "(HIV-AIDS tends to hit people in young adulthood, when they have children, and those children are often left to the care of grandparents or, more specifically, grandmothers.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent4",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "The first 4 years of university should be free, as even with this it is not usually enough for a decent job.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent5",
+      "is_overlap": true
+    },
+    {
+      "sentence_text": "The right to equal treatment regardless of race (section 15), the right to life (section 7)?And does traditional medicine include a quack in Florida?",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent6",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "The San Bernardino couple's arsenal of guns and ammo was, as a writer for The Nation put it, 'as American as apple pie.'",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent7",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "Even if it's not a matter of ethnic difference (which mostly boils down to being raised with different customs), all of us are unique.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent8",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "So as someone of qu?b?cois ancestry, I guess I should be enraged that the nickname for the Canadiens is the Habs.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent9",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "He had arrived at the federal facility a month earlier after being transferred from Stony Mountain Institution, another federal prison where he had already spent 134 days in isolation.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent10",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "Once Trump is in power, it is hoped that a review is carried out and the politicized and corrupted CIA personnel removed...",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent11",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "As there's no way of knowing whether he was killed in the first or second volley, there is no way of deciding between acquittal or conviction for murder.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent12",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "The obese and the smokers and the booze hounds will take themselves out by their mid 50's, long before they become a real drain on our health care dollars.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent13",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "It welcomes doing business with CNOOC or other Chinese SOEs and expanding trade with China through a variety of commercial arrangements on a dozen fronts.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent14",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "Eating pesticide drenched food and/or highly processed pre-made microwavable food (or Mcd's) versus having a few glasses a week while pregnant.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent15",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "Stephen Harper's Conservatives, should we go by oversimplified stereotypes, are the party that never saw a war it didn't like.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent16",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "Ontario's Health Minister seems more interested in his hair than his responsibilities to properly resource hospitals and ensure access to urgent care.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent17",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "'He also added he found it 'very, very scary' that government could strip new Canadians of their citizenship rights because of unlawful actions.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent18",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "Given the limited number of psychiatrists., and this article advocates fewer, the waits for prescription medicine could be much too long.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent19",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "If so, the generals are not alone in their delusions.In the absence of any real answers from the federal government, we are left with a vacuum.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent20",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "When the cop tells him to walk on the sidewalk instead of the middle of the street, he charges the police car, swears at the cop and tries to grab his gun.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent21",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "Administrations from all levels of government across theh political spectrum have routinely ignored it since the day it was built.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent22",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "However, China's GDP has spiralled from $500-billion (U.S.) in 1982 to more than $9-trillion in 2013 - and its massive trade and investment footprint continues to increase.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent23",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "It is interesting that the New Soviet Man who 'evolved' after 75 years of Communism and Scientific Socialism is really the same old pathetic Russian peasant.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent24",
+      "is_overlap": true
+    },
+    {
+      "sentence_text": "'It is a business, because it has to be - meaning that it covers its costs, it makes a profit.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent25",
+      "is_overlap": true
+    },
+    {
+      "sentence_text": "They get added for us, usually by Mayor and council who ring us up and say you will now cover this contingency.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent26",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "It's possible that the accommodations required will be so at odds with their self-interest that they won't, and instead watch bitterly as country after country opts out.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent27",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "Where does Wynne think she is going to come up with the hundreds of billions of dollars required to connect the north with high voltage power lines across the boreal forest and northern shield?",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent28",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "If, like Harper, you're going to be a provocative bully and a braggart, you better have the muscle to back it up.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent29",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "Trump has, of course, said many worrisome things during his run for the Republican nomination but his musings about NATO should not be dismissed lightly.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent30",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "For women who have to return to work just weeks after giving birth, and do not have time to use a breast pump at the office, formula can be a life-saving supplement.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent31",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "For some reason, this public-health calamity has failed to galvanize the country's attention, certainly not like the great SARS panic of 2003 did.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent32",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "For all his considerable talent at cutting costs, he is not considered a visionary who anticipates the future before the competition.One has to wonder what Quebecor would have become had Videotron not landed in its lap.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent33",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "Given these grim numbers, it makes no sense to discuss saving the lives of women and girls without talking about access to abortion.Mr.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent34",
+      "is_overlap": true
+    },
+    {
+      "sentence_text": "That's because of its fundamental missions not compatible to Canada, because strong stealth is highly vulnerable to future detection technology.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent35",
+      "is_overlap": true
+    },
+    {
+      "sentence_text": "Yet these are exactly the troubling issues the committee is, or should be, trying to rectify.There are multiple glaring obstacles preventing MPs from overseeing the public purse.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent36",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "Not a great outcome for the taxpayer, but the point is they figured out what was wrong and that it was going to collapse by getting out and talking to people on the ground and investigating on their own.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent37",
+      "is_overlap": true
+    },
+    {
+      "sentence_text": "One night, I was standing guard at the corner of Obispo and Oficios when a supposedly U.S. military plane flew over Havana.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent38",
+      "is_overlap": true
+    },
+    {
+      "sentence_text": "He raised the prospect that Canada would 'not hesitate to defend its interests' if 'unjust, discriminatory measures ... are put in place.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent39",
+      "is_overlap": true
+    },
+    {
+      "sentence_text": "That is why Toronto Police Service Constable James Forcillo was charged with fatally shooting Sammy Yatim, and why on Monday a jury found him guilty of attempted murder.Leaving aside the question of whether Const.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent40",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "As both citizens and consumers, Canadians do want to see themselves reflected in the books and magazines they read, the TV they watch and the music they hear.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent41",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "Indeed, Russia's use of R2P-type language is all the more precarious in that at least part of the threat posed to Ukrainians stems from Russia itself.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent42",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "the harper government is to democracy what the chip away virus was to computer integrityslowly but surely they destroy from within",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent43",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "Extreme weather events due to climate change are already taking a huge toll on many nations and causing countless premature deaths.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent44",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "Maybe now, like Canada, Britain can make trade deals with the European Union (EU) and take advantage of the millions of people in that huge trading block.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent45",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "...and this from the same government that is funding trade schools in the Philippines to train people there to come here as TFW's so that they can displace Canadian workers.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent46",
+      "is_overlap": true
+    },
+    {
+      "sentence_text": "The whisky Jack shows up in many Canadian history stories and was well known by explorers and pioneers as a great nuisance because it was bothersome and would steal the food right out of your mouth.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent47",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "...'If I were a young black man imprisoned in South Africa,' he added, 'I would support those who supported me.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent48",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "We can no longer afford to to put public sector workers on retirement benefits of 60-80% of income between the ages of 45-60.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent49",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "The political and logistical challenges - imagine Caledonia times five or 10 - would be formidable and the political fallout so substantial that it could easily prove to be destabilizing on a national scale.",
+      "sentence_id": "0fb6ec93-952e-4ab4-942b-a64507ba6900_sent50",
+      "is_overlap": true
+    }
+  ]
+}
