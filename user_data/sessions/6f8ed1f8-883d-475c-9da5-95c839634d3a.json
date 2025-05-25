@@ -1,0 +1,510 @@
+{
+  "annotator_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a",
+  "total_sentences": 50,
+  "overlap_sentences": [
+    {
+      "sentence_text": "Again, after the Second World War, Japan underwent another basic shift under U.S. occupation.Both events demonstrated the incredible cohesiveness of Japanese society, a cohesiveness that underlies the ability to undergo revolutionary change without total social upheaval.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent21",
+      "is_overlap": true
+    },
+    {
+      "sentence_text": "They get added for us, usually by Mayor and council who ring us up and say you will now cover this contingency.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent32",
+      "is_overlap": true
+    },
+    {
+      "sentence_text": "Why not compare the West's humanitarian efforts to those of Middle Eastern nations to shelter Yadziki Christian or Shia refugees in places like Sunni-dominated Saudi Arabia ... where Christianity is outlawed.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent1",
+      "is_overlap": true
+    },
+    {
+      "sentence_text": "Would China or France?The impact of collapsing commodity prices and lack of export capacity upon Canada's economy and its public finances is profound.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent24",
+      "is_overlap": true
+    },
+    {
+      "sentence_text": "at TWU rather than at another university.The LSUC is correct in observing that a married same-sex couple could not study law at TWU.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent3",
+      "is_overlap": true
+    },
+    {
+      "sentence_text": "However, China's GDP has spiralled from $500-billion (U.S.) in 1982 to more than $9-trillion in 2013 - and its massive trade and investment footprint continues to increase.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent30",
+      "is_overlap": true
+    },
+    {
+      "sentence_text": "There is no place in modern society for organizations to intrude into private practices and bind people to vows of celibacy or to indoctrinate them into believing false things about sexual orientation.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent7",
+      "is_overlap": true
+    },
+    {
+      "sentence_text": "I won't cut your taxes but I won't raise them either but all bets are off once I'm in power.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent27",
+      "is_overlap": true
+    },
+    {
+      "sentence_text": "Television is a circus, a carnival, a traveling troupe of acrobats, storytellers, dancers, singers, jugglers, side-show freaks, lion tamers, and football players.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent23",
+      "is_overlap": true
+    },
+    {
+      "sentence_text": "The election results may or may not depend on the war issue, depending on possible future terrorist activity and the number of Canadians killed in the war, as well as the importance of other issues such as the economy.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent18",
+      "is_overlap": true
+    }
+  ],
+  "unique_sentences": [
+    {
+      "sentence_text": "but as too many university girls joined the other team that too became as fashionable as last year's party frocks.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent42",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "Mirvish has shown his sensitivity to such questions and Mr. Gehry has a track record that merits the benefit of the doubt.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent13",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "But after more than two decades of believing that ultimately Arabs and Jews would find a way to co-exist as equals, he wrote, something inside him 'had broken.'",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent48",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "I'm sure that it would shut you all up rather quickly when you have to pay through the nose for everything.....including the corporate profits that would now be tacked onto everything provided to you through the private sector.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent11",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "It's not so much that they're anti-woman as that a candidate's rightwing views trump any other factors (even the risk of his being found ineligible.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent9",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "You have bombed Homs into submission, shelled other cities and laid mines on your border to keep your people from going in or out.In this looking-glass world, your security people keep telling you it is all over, bar the clean-up.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent26",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "This is so typical of anyone affiliated with he CBC, Its our tax dollars and they can do as they wish",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent17",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "'The judge said Friday that the wording of Section 121 is clear, and that the provincial law violates its intention.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent41",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "But the feeding needs to be accompanied with psychiatric or psychological therapy to address the underlying mental-health problem.Few hospitals have the resources to offer that care.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent22",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "Most agree that until California deals with these two areas, it will only be pecking away at its monstrous fiscal challenges.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent46",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "The Construction and Specialized Workers' Union and the International Union of Operating Engineers challenged that opinion in court.Given the list of factors that it was Mr. MacLean's duty to consider, his conclusion was right.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent31",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "Eating pesticide drenched food and/or highly processed pre-made microwavable food (or Mcd's) versus having a few glasses a week while pregnant.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent39",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "Boy, shows you that skilled defence lawyers (Bayne and Heinen) can make the Crown Attorneys look unprepared and rather amateurish.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent34",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "That is left to India's minuscule elite of academics and intellectuals.Over the years, it has gradually emerged that India's middle class is different in another way: its size.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent16",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "Apportioning the undecided to the two camps produced 34 per cent for Yes and 66 per cent for No.Think about those numbers.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent40",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "The effective end of Rick Santorum's doomed nomination campaign will finally allow Americans to focus their attention where it belongs, on the choice between the presumptive Republican presidential nominee, Mitt Romney, and the incumbent, Democrat Barack Obama.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent50",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "For all his considerable talent at cutting costs, he is not considered a visionary who anticipates the future before the competition.One has to wonder what Quebecor would have become had Videotron not landed in its lap.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent38",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "All that is needed now is to consolidate the various ministries -- I am sure 'Truth' will be the first new agency, followed no doubt by 'Love' and 'Peace'.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent14",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "Which is exactly what the courts in the Ghomeshi case did - it eviscerated the opinions and logic which you use with abandon.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent45",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "Until humans take responsibility for the problem we have created, perhaps we sadly need to take a more utilitarian approach.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent8",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "It's the responsibility of the police (a highly paid and highly trained institution in the UK) to solve such crimes.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent36",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "Yet police announced they had arrested a suspect in the beating of the music promoter, who was not under investigation himself.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent49",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "That's especially true when the species at risk is a tree.The government recognizes the dilemma, but argues it is not something the courts should be concerned with.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent29",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "That said, Detroit won't be in full control of its finances for another decade or more: A state Financial Review Commission will have the power to veto spending and borrowing decisions until the city is fully recovered.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent47",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "I wonder what it would take to get companies to stop using Deco Labels, the Ford gravy train... just sayin'.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent28",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "Lucky enough to have my own house, dividing it and using the rental half as retirement income is on the books (plan C, I think).",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent5",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "Australian Liberal Party representatives attend Canadian Conservative conventions and observe election campaigns; Conservatives stay well briefed on what the Australian Liberals are thinking and strategizing.Today, however, the roles are reversed.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent44",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "He raised the prospect that Canada would 'not hesitate to defend its interests' if 'unjust, discriminatory measures ... are put in place.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent10",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "The Supreme Court says that other courts have failed to apply or understand its liberal ruling in the 1999 case of R v. Gladue.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent6",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "The root cause of attack ads appears to be the biased MSM in Canada and their unflagging support for the the flawed socialist leaders that have for good reason assumed the underdog role in Canadian politics.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent25",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "Gary Doer, the Canadian ambassador to the United States, was right to respond as he did to President Barack Obama's comments on the proposed Keystone XL pipeline in the New York Times on Sunday.Mr.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent15",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "Extreme weather events due to climate change are already taking a huge toll on many nations and causing countless premature deaths.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent19",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "Yet it's difficult to ignore the scale of what is taking place on the West Coast.Earlier this week, BC Assessment, the agency that puts a value on housing units in the province, released the valuations for 2016.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent12",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "the harper government is to democracy what the chip away virus was to computer integrityslowly but surely they destroy from within",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent37",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "To quote Juan Cole 'France is a country of 66 million, of which about 5 million is of Muslim heritage.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent33",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "If, like Harper, you're going to be a provocative bully and a braggart, you better have the muscle to back it up.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent35",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "In economics, an externality is the cost or benefit that affects a party who did not choose to incur that cost or benefit.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent20",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "In a world where political figures have become dull almost to the point of sleep inducement, Regis Labeaume stands out.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent43",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "The fembot running (via Chipotle) for the White House gave proof of that when she recently popped up in Iowa vowing to fight for the 'everyday' folk who politicians up here still call the middle class.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent4",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "Shortly after Carney's name arose as a possible Liberal leader, Harper forced Carney to leave his post at the Bank of Canada.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent2",
+      "is_overlap": false
+    }
+  ],
+  "dataset": [
+    {
+      "sentence_text": "Why not compare the West's humanitarian efforts to those of Middle Eastern nations to shelter Yadziki Christian or Shia refugees in places like Sunni-dominated Saudi Arabia ... where Christianity is outlawed.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent1",
+      "is_overlap": true
+    },
+    {
+      "sentence_text": "Shortly after Carney's name arose as a possible Liberal leader, Harper forced Carney to leave his post at the Bank of Canada.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent2",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "at TWU rather than at another university.The LSUC is correct in observing that a married same-sex couple could not study law at TWU.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent3",
+      "is_overlap": true
+    },
+    {
+      "sentence_text": "The fembot running (via Chipotle) for the White House gave proof of that when she recently popped up in Iowa vowing to fight for the 'everyday' folk who politicians up here still call the middle class.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent4",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "Lucky enough to have my own house, dividing it and using the rental half as retirement income is on the books (plan C, I think).",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent5",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "The Supreme Court says that other courts have failed to apply or understand its liberal ruling in the 1999 case of R v. Gladue.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent6",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "There is no place in modern society for organizations to intrude into private practices and bind people to vows of celibacy or to indoctrinate them into believing false things about sexual orientation.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent7",
+      "is_overlap": true
+    },
+    {
+      "sentence_text": "Until humans take responsibility for the problem we have created, perhaps we sadly need to take a more utilitarian approach.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent8",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "It's not so much that they're anti-woman as that a candidate's rightwing views trump any other factors (even the risk of his being found ineligible.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent9",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "He raised the prospect that Canada would 'not hesitate to defend its interests' if 'unjust, discriminatory measures ... are put in place.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent10",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "I'm sure that it would shut you all up rather quickly when you have to pay through the nose for everything.....including the corporate profits that would now be tacked onto everything provided to you through the private sector.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent11",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "Yet it's difficult to ignore the scale of what is taking place on the West Coast.Earlier this week, BC Assessment, the agency that puts a value on housing units in the province, released the valuations for 2016.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent12",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "Mirvish has shown his sensitivity to such questions and Mr. Gehry has a track record that merits the benefit of the doubt.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent13",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "All that is needed now is to consolidate the various ministries -- I am sure 'Truth' will be the first new agency, followed no doubt by 'Love' and 'Peace'.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent14",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "Gary Doer, the Canadian ambassador to the United States, was right to respond as he did to President Barack Obama's comments on the proposed Keystone XL pipeline in the New York Times on Sunday.Mr.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent15",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "That is left to India's minuscule elite of academics and intellectuals.Over the years, it has gradually emerged that India's middle class is different in another way: its size.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent16",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "This is so typical of anyone affiliated with he CBC, Its our tax dollars and they can do as they wish",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent17",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "The election results may or may not depend on the war issue, depending on possible future terrorist activity and the number of Canadians killed in the war, as well as the importance of other issues such as the economy.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent18",
+      "is_overlap": true
+    },
+    {
+      "sentence_text": "Extreme weather events due to climate change are already taking a huge toll on many nations and causing countless premature deaths.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent19",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "In economics, an externality is the cost or benefit that affects a party who did not choose to incur that cost or benefit.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent20",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "Again, after the Second World War, Japan underwent another basic shift under U.S. occupation.Both events demonstrated the incredible cohesiveness of Japanese society, a cohesiveness that underlies the ability to undergo revolutionary change without total social upheaval.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent21",
+      "is_overlap": true
+    },
+    {
+      "sentence_text": "But the feeding needs to be accompanied with psychiatric or psychological therapy to address the underlying mental-health problem.Few hospitals have the resources to offer that care.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent22",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "Television is a circus, a carnival, a traveling troupe of acrobats, storytellers, dancers, singers, jugglers, side-show freaks, lion tamers, and football players.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent23",
+      "is_overlap": true
+    },
+    {
+      "sentence_text": "Would China or France?The impact of collapsing commodity prices and lack of export capacity upon Canada's economy and its public finances is profound.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent24",
+      "is_overlap": true
+    },
+    {
+      "sentence_text": "The root cause of attack ads appears to be the biased MSM in Canada and their unflagging support for the the flawed socialist leaders that have for good reason assumed the underdog role in Canadian politics.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent25",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "You have bombed Homs into submission, shelled other cities and laid mines on your border to keep your people from going in or out.In this looking-glass world, your security people keep telling you it is all over, bar the clean-up.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent26",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "I won't cut your taxes but I won't raise them either but all bets are off once I'm in power.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent27",
+      "is_overlap": true
+    },
+    {
+      "sentence_text": "I wonder what it would take to get companies to stop using Deco Labels, the Ford gravy train... just sayin'.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent28",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "That's especially true when the species at risk is a tree.The government recognizes the dilemma, but argues it is not something the courts should be concerned with.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent29",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "However, China's GDP has spiralled from $500-billion (U.S.) in 1982 to more than $9-trillion in 2013 - and its massive trade and investment footprint continues to increase.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent30",
+      "is_overlap": true
+    },
+    {
+      "sentence_text": "The Construction and Specialized Workers' Union and the International Union of Operating Engineers challenged that opinion in court.Given the list of factors that it was Mr. MacLean's duty to consider, his conclusion was right.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent31",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "They get added for us, usually by Mayor and council who ring us up and say you will now cover this contingency.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent32",
+      "is_overlap": true
+    },
+    {
+      "sentence_text": "To quote Juan Cole 'France is a country of 66 million, of which about 5 million is of Muslim heritage.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent33",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "Boy, shows you that skilled defence lawyers (Bayne and Heinen) can make the Crown Attorneys look unprepared and rather amateurish.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent34",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "If, like Harper, you're going to be a provocative bully and a braggart, you better have the muscle to back it up.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent35",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "It's the responsibility of the police (a highly paid and highly trained institution in the UK) to solve such crimes.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent36",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "the harper government is to democracy what the chip away virus was to computer integrityslowly but surely they destroy from within",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent37",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "For all his considerable talent at cutting costs, he is not considered a visionary who anticipates the future before the competition.One has to wonder what Quebecor would have become had Videotron not landed in its lap.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent38",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "Eating pesticide drenched food and/or highly processed pre-made microwavable food (or Mcd's) versus having a few glasses a week while pregnant.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent39",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "Apportioning the undecided to the two camps produced 34 per cent for Yes and 66 per cent for No.Think about those numbers.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent40",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "'The judge said Friday that the wording of Section 121 is clear, and that the provincial law violates its intention.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent41",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "but as too many university girls joined the other team that too became as fashionable as last year's party frocks.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent42",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "In a world where political figures have become dull almost to the point of sleep inducement, Regis Labeaume stands out.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent43",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "Australian Liberal Party representatives attend Canadian Conservative conventions and observe election campaigns; Conservatives stay well briefed on what the Australian Liberals are thinking and strategizing.Today, however, the roles are reversed.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent44",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "Which is exactly what the courts in the Ghomeshi case did - it eviscerated the opinions and logic which you use with abandon.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent45",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "Most agree that until California deals with these two areas, it will only be pecking away at its monstrous fiscal challenges.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent46",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "That said, Detroit won't be in full control of its finances for another decade or more: A state Financial Review Commission will have the power to veto spending and borrowing decisions until the city is fully recovered.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent47",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "But after more than two decades of believing that ultimately Arabs and Jews would find a way to co-exist as equals, he wrote, something inside him 'had broken.'",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent48",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "Yet police announced they had arrested a suspect in the beating of the music promoter, who was not under investigation himself.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent49",
+      "is_overlap": false
+    },
+    {
+      "sentence_text": "The effective end of Rick Santorum's doomed nomination campaign will finally allow Americans to focus their attention where it belongs, on the choice between the presumptive Republican presidential nominee, Mitt Romney, and the incumbent, Democrat Barack Obama.",
+      "sentence_id": "6f8ed1f8-883d-475c-9da5-95c839634d3a_sent50",
+      "is_overlap": false
+    }
+  ]
+}
