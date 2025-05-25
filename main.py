@@ -1,46 +1,104 @@
-from fastapi import FastAPI, Query
+from fastapi import FastAPI, Query, UploadFile, File
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware
+from supabase import create_client, Client
+
 import os
 import json
 import random
 import uuid
-from pathlib import Path
+import datetime
+from io import BytesIO, StringIO
+from typing import Optional, List
 
 app = FastAPI()
 
-# === Directories ===
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+SUPABASE_URL = "https://btkqbbtcxbvdxtojmrhn.supabase.co"
+SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ0a3FiYnRjeGJ2ZHh0b2ptcmhuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDgxNzQ3MjksImV4cCI6MjA2Mzc1MDcyOX0.T-Ay_5X2U_9dnG4dtrarj85BadwHD5fGrlCA7Hpz2Og"
+supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 
-STATIC_DIR = os.path.join(BASE_DIR, "templates", "static")
-USER_DATA_DIR = os.path.join(BASE_DIR, "user_data")
-ANNOTATIONS_DIR = os.path.join(USER_DATA_DIR, "annotations")
-SESSIONS_DIR = os.path.join(USER_DATA_DIR, "sessions")
+BUCKET_NAME = "annotation-db"
 
-os.makedirs(ANNOTATIONS_DIR, exist_ok=True)
-os.makedirs(SESSIONS_DIR, exist_ok=True)
-
-# === Configuration ===
+# === Config ===
 SENTENCES_PER_ANNOTATOR = 50
 OVERLAP_PERCENTAGE = 0.2
 OVERLAP_COUNT = int(SENTENCES_PER_ANNOTATOR * OVERLAP_PERCENTAGE)  # 10 sentences
 UNIQUE_COUNT = SENTENCES_PER_ANNOTATOR - OVERLAP_COUNT  # 40 sentences
 
-# === Mount static files ===
+# === Static files on local, you can keep this if you want ===
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+STATIC_DIR = os.path.join(BASE_DIR, "templates", "static")
 app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
 
-# === Enable CORS for frontend/backend separation ===
+# === Enable CORS ===
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Adjust for production!
+    allow_origins=["*"],  # For production, restrict this!
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
+# --- Helpers for Supabase Storage ---
+
+def supabase_upload_json(bucket: str, path: str, data: dict):
+    """Upload JSON data to Supabase Storage as UTF-8 encoded file."""
+    content = json.dumps(data, indent=2).encode("utf-8")
+    res = supabase.storage.from_(bucket).upload(path, BytesIO(content), {"content-type": "application/json"}, upsert=True)
+    if res.get("error"):
+        raise Exception(f"Supabase upload error: {res['error']}")
+
+def supabase_download_json(bucket: str, path: str) -> Optional[dict]:
+    """Download JSON file from Supabase Storage and parse it."""
+    res = supabase.storage.from_(bucket).download(path)
+    if res.get("error"):
+        # File does not exist or other error
+        return None
+    content = res.get("data")
+    if content is None:
+        return None
+    text = content.read().decode("utf-8")
+    return json.loads(text)
+
+def supabase_upload_jsonl(bucket: str, path: str, lines: List[dict], append: bool = False):
+    """Upload JSONL lines to Supabase bucket.
+    If append=True, download existing file, append lines, then re-upload."""
+    existing_lines = []
+    if append:
+        existing_content = supabase_download_raw(bucket, path)
+        if existing_content:
+            existing_lines = existing_content.strip().split("\n")
+
+    # Prepare new lines as JSONL strings
+    new_lines = [json.dumps(line, ensure_ascii=False) for line in lines]
+    all_lines = existing_lines + new_lines
+    content = "\n".join(all_lines).encode("utf-8")
+
+    res = supabase.storage.from_(bucket).upload(path, BytesIO(content), {"content-type": "application/jsonl"}, upsert=True)
+    if res.get("error"):
+        raise Exception(f"Supabase upload error: {res['error']}")
+
+def supabase_download_raw(bucket: str, path: str) -> Optional[str]:
+    """Download raw text file from Supabase Storage."""
+    res = supabase.storage.from_(bucket).download(path)
+    if res.get("error"):
+        return None
+    content = res.get("data")
+    if content is None:
+        return None
+    text = content.read().decode("utf-8")
+    return text
+
+def list_files_in_bucket(bucket: str, prefix: str = "") -> List[str]:
+    """List files in the bucket optionally filtered by prefix"""
+    res = supabase.storage.from_(bucket).list(path=prefix)
+    if res.get("error"):
+        return []
+    return [item["name"] for item in res.get("data", [])]
+
+# === Load all sentences from local file (you can keep this locally if static) ===
 def load_all_sentences():
-    """Load all sentences from the main data file"""
     input_path = os.path.join(BASE_DIR, "templates", "data", "sample_sfu_combined.jsonl")
     try:
         with open(input_path) as f:
@@ -50,92 +108,75 @@ def load_all_sentences():
         print(f"Error loading sentences: {e}")
         return []
 
+# === Overlap sentences stored in bucket as JSON ===
 def get_or_create_overlap_sentences():
-    """Get the fixed overlap sentences that all annotators will share"""
-    overlap_file = os.path.join(USER_DATA_DIR, "overlap_sentences.json")
-    
-    if os.path.exists(overlap_file):
-        # Load existing overlap sentences
-        try:
-            with open(overlap_file, "r") as f:
-                return json.load(f)
-        except Exception as e:
-            print(f"Error loading overlap sentences: {e}")
-    
+    overlap_path = "overlap_sentences.json"
+    overlap_sentences = supabase_download_json(BUCKET_NAME, overlap_path)
+    if overlap_sentences:
+        return overlap_sentences
+
     # Create new overlap sentences
     all_sentences = load_all_sentences()
     if len(all_sentences) < OVERLAP_COUNT:
         return []
-    
+
     overlap_sentences = random.sample(all_sentences, OVERLAP_COUNT)
-    
-    # Save overlap sentences for consistency
+
     try:
-        with open(overlap_file, "w") as f:
-            json.dump(overlap_sentences, f, indent=2)
+        supabase_upload_json(BUCKET_NAME, overlap_path, overlap_sentences)
     except Exception as e:
-        print(f"Error saving overlap sentences: {e}")
-    
+        print(f"Error uploading overlap sentences: {e}")
+
     return overlap_sentences
 
+# === Get all sentences used in sessions stored in bucket ===
 def get_used_sentences():
-    """Get all sentences that have already been assigned to previous annotators"""
     used_sentences = set()
-    session_files = list(Path(SESSIONS_DIR).glob("*.json"))
-    
+    # List all session json files in the bucket
+    session_files = list_files_in_bucket(BUCKET_NAME, prefix="sessions/")
     for session_file in session_files:
-        try:
-            with open(session_file, "r") as f:
-                session_data = json.load(f)
-                for sentence in session_data.get("unique_sentences", []):
-                    # Create a unique identifier for each sentence
-                    sentence_key = json.dumps(sentence, sort_keys=True)
-                    used_sentences.add(sentence_key)
-        except Exception as e:
-            print(f"Error reading session file {session_file}: {e}")
-    
+        if not session_file.endswith(".json"):
+            continue
+        session_data = supabase_download_json(BUCKET_NAME, session_file)
+        if not session_data:
+            continue
+        for sentence in session_data.get("unique_sentences", []):
+            sentence_key = json.dumps(sentence, sort_keys=True)
+            used_sentences.add(sentence_key)
     return used_sentences
 
-def create_annotator_dataset(annotator_id):
-    """Create a dataset for a specific annotator"""
+# === Create annotator dataset and save session to bucket ===
+def create_annotator_dataset(annotator_id: str):
     all_sentences = load_all_sentences()
     if len(all_sentences) < SENTENCES_PER_ANNOTATOR:
         return None, f"Not enough sentences in dataset. Need {SENTENCES_PER_ANNOTATOR}, have {len(all_sentences)}"
-    
-    # Get the fixed overlap sentences
+
     overlap_sentences = get_or_create_overlap_sentences()
     if len(overlap_sentences) != OVERLAP_COUNT:
         return None, f"Could not create overlap sentences. Expected {OVERLAP_COUNT}, got {len(overlap_sentences)}"
-    
-    # Get sentences that aren't part of the overlap
+
     non_overlap_sentences = [s for s in all_sentences if s not in overlap_sentences]
-    
-    # Get already used unique sentences
+
     used_sentences = get_used_sentences()
-    
-    # Find available unique sentences (not used by previous annotators)
+
     available_unique = []
     for sentence in non_overlap_sentences:
         sentence_key = json.dumps(sentence, sort_keys=True)
         if sentence_key not in used_sentences:
             available_unique.append(sentence)
-    
+
     if len(available_unique) < UNIQUE_COUNT:
         return None, f"Not enough unique sentences available. Need {UNIQUE_COUNT}, have {len(available_unique)}"
-    
-    # Select unique sentences for this annotator
+
     unique_sentences = random.sample(available_unique, UNIQUE_COUNT)
-    
-    # Combine overlap and unique sentences
+
     annotator_dataset = overlap_sentences + unique_sentences
     random.shuffle(annotator_dataset)
-    
-    # Add metadata
+
     for i, sentence in enumerate(annotator_dataset):
         sentence['sentence_id'] = f"{annotator_id}_sent{i+1}"
         sentence['is_overlap'] = sentence in overlap_sentences
-    
-    # Save session data
+
     session_data = {
         "annotator_id": annotator_id,
         "total_sentences": len(annotator_dataset),
@@ -143,205 +184,74 @@ def create_annotator_dataset(annotator_id):
         "unique_sentences": unique_sentences,
         "dataset": annotator_dataset
     }
-    
-    session_file = os.path.join(SESSIONS_DIR, f"{annotator_id}.json")
+
+    session_file_path = f"sessions/{annotator_id}.json"
     try:
-        with open(session_file, "w") as f:
-            json.dump(session_data, f, indent=2)
+        supabase_upload_json(BUCKET_NAME, session_file_path, session_data)
     except Exception as e:
         return None, f"Error saving session data: {e}"
-    
+
     return annotator_dataset, None
 
-# === Start annotation session - Create dynamic dataset ===
+# === Routes ===
+
 @app.get("/start_annotation")
 def start_annotation():
-    """
-    Start a new annotation session:
-    - Generate unique annotator ID
-    - Create dataset with fixed overlap + unique sentences
-    - Return session info
-    """
     annotator_id = str(uuid.uuid4())
-    
-    # Create dataset for this annotator
     dataset, error = create_annotator_dataset(annotator_id)
-    
     if error:
         return {"error": error}
-    
     return {
         "annotator_id": annotator_id,
         "total_sentences": len(dataset),
         "overlap_sentences": OVERLAP_COUNT,
         "unique_sentences": UNIQUE_COUNT,
-        "message": f"Dataset created with {len(dataset)} sentences"
+        "dataset": dataset
     }
 
-# === Serve sentences for specific annotator ===
-@app.get("/api/sentences")
-def get_sentences(annotator_id: str = Query(..., description="Annotator ID")):
-    """
-    Get sentences for a specific annotator.
-    """
-    session_file = os.path.join(SESSIONS_DIR, f"{annotator_id}.json")
-    if not os.path.exists(session_file):
-        return {"error": f"No session found for annotator {annotator_id}"}
-    
+@app.post("/save_annotation")
+async def save_annotation(annotator_id: str = Query(...), annotations: List[dict] = None):
+    if annotations is None:
+        return {"error": "No annotations provided"}
+
+    # Load existing annotations or create new list
+    annotations_path = f"annotations/{annotator_id}.jsonl"
+
     try:
-        with open(session_file, "r") as f:
-            session_data = json.load(f)
-        return session_data["dataset"]
+        existing_content = supabase_download_raw(BUCKET_NAME, annotations_path)
     except Exception as e:
-        return {"error": f"Failed to load dataset: {str(e)}"}
+        existing_content = None
 
-# === Save individual annotation ===
-@app.post("/api/save_annotation")
-async def save_annotation(payload: dict):
-    """
-    Save a single annotation.
-    Expected payload:
-    {
-        "annotator_id": "uuid",
-        "sentence": "text of sentence",
-        "label": {"Economic": true, "Health_Safety": false, ...}
-    }
-    """
-    annotator_id = payload.get("annotator_id")
-    sentence = payload.get("sentence")
-    label = payload.get("label")
-    
-    if not all([annotator_id, sentence, label is not None]):
-        return {"error": "Missing required fields: annotator_id, sentence, label"}
+    existing_lines = existing_content.strip().split("\n") if existing_content else []
+    new_lines = [json.dumps(a, ensure_ascii=False) for a in annotations]
+    all_lines = existing_lines + new_lines
 
-    # Create annotation record with timestamp
-    import datetime
-    annotation_record = {
-        "annotator_id": annotator_id,
-        "sentence": sentence,
-        "label": label,
-        "timestamp": datetime.datetime.now().isoformat()
-    }
-    
-    # Save to annotator-specific file
-    out_path = os.path.join(ANNOTATIONS_DIR, f"{annotator_id}.jsonl")
-    try:
-        with open(out_path, "a", encoding="utf-8") as f:
-            f.write(json.dumps(annotation_record, ensure_ascii=False) + "\n")
-    except Exception as e:
-        return {"error": f"Failed to save annotation: {str(e)}"}
+    content = "\n".join(all_lines).encode("utf-8")
 
-    return {"status": "saved", "annotator_id": annotator_id}
+    res = supabase.storage.from_(BUCKET_NAME).upload(annotations_path, BytesIO(content), {"content-type": "application/jsonl"}, upsert=True)
+    if res.get("error"):
+        return {"error": f"Failed to save annotations: {res['error']}"}
 
-# === Get annotation statistics ===
-@app.get("/api/stats")
-def get_annotation_stats():
-    """
-    Get statistics about annotations collected so far.
-    """
-    annotation_files = list(Path(ANNOTATIONS_DIR).glob("*.jsonl"))
-    
-    total_annotators = len(annotation_files)
-    total_annotations = 0
-    
-    for file in annotation_files:
-        try:
-            with open(file, "r") as f:
-                lines = f.readlines()
-                total_annotations += len(lines)
-        except:
-            continue
-    
-    return {
-        "total_annotators": total_annotators,
-        "total_annotations": total_annotations,
-        "annotations_per_annotator": total_annotations / total_annotators if total_annotators > 0 else 0,
-        "sentences_per_annotator": SENTENCES_PER_ANNOTATOR,
-        "overlap_percentage": OVERLAP_PERCENTAGE
-    }
+    return {"message": "Annotations saved successfully"}
 
-# === Export all annotations ===
-@app.get("/api/export_annotations")
-def export_annotations():
-    """
-    Export all annotations in a single JSON file for analysis.
-    """
-    annotation_files = list(Path(ANNOTATIONS_DIR).glob("*.jsonl"))
-    all_annotations = []
-    
-    for file in annotation_files:
-        try:
-            with open(file, "r") as f:
-                for line in f:
-                    annotation = json.loads(line.strip())
-                    all_annotations.append(annotation)
-        except Exception as e:
-            print(f"Error reading {file}: {e}")
-            continue
-    
-    return {
-        "total_annotations": len(all_annotations),
-        "annotations": all_annotations
-    }
+@app.get("/annotations/{annotator_id}")
+def get_annotations(annotator_id: str):
+    annotations_path = f"annotations/{annotator_id}.jsonl"
+    content = supabase_download_raw(BUCKET_NAME, annotations_path)
+    if not content:
+        return {"error": "No annotations found"}
+    return {"annotations": content}
 
-# === Reset overlap sentences (admin function) ===
-@app.post("/admin/reset_overlap")
-def reset_overlap_sentences():
-    """Reset the overlap sentences (use carefully!)"""
-    overlap_file = os.path.join(USER_DATA_DIR, "overlap_sentences.json")
-    if os.path.exists(overlap_file):
-        os.remove(overlap_file)
-    return {"message": "Overlap sentences reset. Next annotator will create new overlap set."}
-
-# === Get system info ===
-@app.get("/api/system_info")
-def get_system_info():
-    """Get information about the annotation system configuration"""
-    all_sentences = load_all_sentences()
+@app.get("/overlap_sentences")
+def get_overlap_sentences():
     overlap_sentences = get_or_create_overlap_sentences()
-    used_sentences = get_used_sentences()
-    
-    remaining_unique = len(all_sentences) - len(overlap_sentences) - len(used_sentences)
-    max_additional_annotators = remaining_unique // UNIQUE_COUNT
-    
-    return {
-        "total_sentences_in_dataset": len(all_sentences),
-        "sentences_per_annotator": SENTENCES_PER_ANNOTATOR,
-        "overlap_sentences": OVERLAP_COUNT,
-        "unique_sentences_per_annotator": UNIQUE_COUNT,
-        "overlap_percentage": OVERLAP_PERCENTAGE,
-        "sentences_already_used": len(used_sentences),
-        "remaining_unique_sentences": remaining_unique,
-        "max_additional_annotators": max_additional_annotators
-    }
+    return {"overlap_sentences": overlap_sentences}
 
-# === Serve static pages ===
 @app.get("/")
-def instructions():
-    """Serve instructions page"""
-    instructions_path = os.path.join(STATIC_DIR, "instructions.html")
+def root():
+    return {"message": "Annotation API running"}
 
-    if os.path.exists(instructions_path):
-        return FileResponse(instructions_path, media_type='text/html')
-    return {"message": "Instructions file not found."}
-
-@app.get("/annotate")
-def annotation_interface():
-    """Serve annotation interface page"""
-    index_path = os.path.join(STATIC_DIR, "index.html")
-    if os.path.exists(index_path):
-        return FileResponse(index_path)
-    return {"message": "Index file not found."}
-
-# === Health check endpoint ===
-@app.get("/health")
-def health_check():
-    """Basic health check"""
-    return {"status": "healthy", "message": "Annotation system is running"}
-
-# Remove the old generate_users endpoint since we're doing dynamic generation
-# @app.post("/generate_users/") - REMOVED
-
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+# If you want to serve your frontend index.html, do like this:
+# @app.get("/")
+# async def serve_frontend():
+#     return FileResponse(os.path.join(BASE_DIR, "templates", "index.html"))
