@@ -41,7 +41,7 @@ app.add_middleware(
 
 def load_all_sentences():
     """Load all sentences from the main data file"""
-    input_path = "/Users/guida/annotation_app/templates/data/sample_sfu_combined.jsonl"
+    input_path = os.path.join(BASE_DIR, "templates", "data", "sample_sfu_combined.jsonl")
     try:
         with open(input_path) as f:
             sentences = [json.loads(line) for line in f]
