@@ -11,10 +11,13 @@ from pathlib import Path
 app = FastAPI()
 
 # === Directories ===
-STATIC_DIR = "/Users/guida/annotation_app/templates/static"
-USER_DATA_DIR = "/Users/guida/annotation_app/user_data"
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+STATIC_DIR = os.path.join(BASE_DIR, "templates", "static")
+USER_DATA_DIR = os.path.join(BASE_DIR, "user_data")
 ANNOTATIONS_DIR = os.path.join(USER_DATA_DIR, "annotations")
 SESSIONS_DIR = os.path.join(USER_DATA_DIR, "sessions")
+
 os.makedirs(ANNOTATIONS_DIR, exist_ok=True)
 os.makedirs(SESSIONS_DIR, exist_ok=True)
 
