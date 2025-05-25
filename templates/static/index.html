@@ -138,6 +138,37 @@
     box-shadow: 0 3px 6px rgba(0,0,0,0.1);
     transition: background 0.3s, color 0.3s, box-shadow 0.3s;
     font-size: 1.1rem;
+    position: relative;
+  }
+
+  /* Tick box styling */
+  #labels label::before {
+    content: '';
+    position: absolute;
+    right: 10px;
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.7);
+    border-radius: 3px;
+    background: rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+  }
+
+  /* Tick mark inside the box */
+  #labels input[type="checkbox"]:checked + label::before {
+    background: rgba(255, 255, 255, 0.9);
+    border-color: rgba(255, 255, 255, 1);
+  }
+
+  #labels input[type="checkbox"]:checked + label::after {
+    content: '✓';
+    position: absolute;
+    right: 13px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #333;
+    font-size: 12px;
+    font-weight: bold;
   }
 
   label[for="Economic"] {
