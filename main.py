@@ -319,7 +319,8 @@ def get_system_info():
 @app.get("/")
 def instructions():
     """Serve instructions page"""
-    instructions_path = "/Users/guida/annotation_app/templates/static/instructions.html"
+    instructions_path = os.path.join(STATIC_DIR, "instructions.html")
+
     if os.path.exists(instructions_path):
         return FileResponse(instructions_path, media_type='text/html')
     return {"message": "Instructions file not found."}
