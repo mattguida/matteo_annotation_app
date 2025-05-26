@@ -455,19 +455,26 @@
   }
 
   async function loadSentences() {
-    try {
-      const res = await fetch(`/api/sentences?annotator_id=${annotatorId}`);
-      if (!res.ok) throw new Error("Failed to load sentences");
-      sentences = await res.json();
-      if (!sentences.length) {
-        document.getElementById("sentence").innerText = "No sentences loaded.";
-        return;
+      try {
+          const res = await fetch(`/api/sentences?annotator_id=${annotatorId}`);
+          if (!res.ok) throw new Error("Failed to load sentences");
+          
+          const data = await res.json();
+          if (data.error) {
+              throw new Error(data.error);
+          }
+          
+          sentences = data.dataset;  // Now properly accessing the dataset field
+          if (!sentences || !sentences.length) {
+              document.getElementById("sentence").innerText = "No sentences loaded.";
+              return;
+          }
+          
+          displaySentence();
+      } catch (error) {
+          document.getElementById("sentence").innerText = "Error loading sentences: " + error.message;
+          console.error(error);
       }
-      displaySentence();
-    } catch (error) {
-      document.getElementById("sentence").innerText = "Error loading sentences.";
-      console.error(error);
-    }
   }
 
   function displaySentence() {

@@ -204,7 +204,8 @@ def get_sentences(annotator_id: str = Query(..., description="Annotator ID")):
         if not result.data:
             return {"error": f"No session found for annotator {annotator_id}"}
         
-        return result.data[0]["dataset"]
+        # Return as an object with dataset field to match frontend expectations
+        return {"dataset": result.data[0]["dataset"]}
         
     except Exception as e:
         return {"error": f"Failed to load dataset: {str(e)}"}
