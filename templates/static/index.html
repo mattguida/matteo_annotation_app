@@ -255,15 +255,16 @@
       overflow: auto;
       background-color: rgba(0,0,0,0.6);
       backdrop-filter: blur(5px);
+      justify-content: center;
+      align-items: center;
   }
 
   .name-input-content {
       background-color: #ffffff;
-      margin: 15% auto;
-      padding: 30px;
+      padding: 40px;
       border-radius: 12px;
       width: 90%;
-      max-width: 400px;
+      max-width: 450px;
       box-shadow: 0 4px 20px rgba(0,0,0,0.1);
       text-align: center;
       animation: modalFadeIn 0.3s;
@@ -276,20 +277,20 @@
 
   .name-input-content h2 {
       color: #3f51b5;
-      margin-bottom: 20px;
-      font-size: 24px;
+      margin-bottom: 24px;
+      font-size: 28px;
   }
 
   .name-input-content p {
       color: #555;
-      margin-bottom: 20px;
-      font-size: 16px;
+      margin-bottom: 24px;
+      font-size: 18px;
   }
 
   #annotator-name {
-      width: 100%;
-      padding: 12px;
-      margin: 10px 0 20px;
+      width: calc(100% - 24px);
+      padding: 14px;
+      margin: 10px 0 24px;
       border: 2px solid #e0e0e0;
       border-radius: 6px;
       font-size: 16px;
@@ -305,8 +306,8 @@
       background-color: #3f51b5;
       color: white;
       border: none;
-      padding: 12px 24px;
-      font-size: 16px;
+      padding: 14px 28px;
+      font-size: 18px;
       border-radius: 6px;
       cursor: pointer;
       transition: background-color 0.3s, transform 0.1s;
