@@ -243,12 +243,45 @@
     font-size: 0.9rem;
     color: #1565c0;
   }
+
+  .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.4);
+  }
+
+  .modal-content {
+      background-color: #fefefe;
+      margin: 15% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+      max-width: 500px;
+  }
+  
+
 </style>
 </head>
 <body>
 
 <!-- Instructions button -->
 <button id="instructions-btn" onclick="openModal()">📋 Instructions</button>
+
+<!-- Name Input Modal -->
+<div id="name-modal" class="modal">
+    <div class="modal-content">
+        <h2>Welcome to the Annotation Interface!</h2>
+        <p>Please enter your name to begin:  </p>
+        <input type="text" id="annotator-name" placeholder="Your Name">
+        <button onclick="startAnnotation()">Start Annotating</button>
+    </div>
+</div>
 
 <!-- Modal for Framing Categories -->
 <div id="modal">
@@ -342,11 +375,15 @@
 <div id="status"></div>
 
 <script>
+  window.onload = function() {
+      document.getElementById('name-modal').style.display = 'block';
+  }
   let sentences = [];
   let currentIndex = 0;
   let annotations = {};
   let annotatorId = null;
   let datasetFile = null;
+  let annotatorName = null;
 
   // Function to open modal with framing categories
   function openModal() {
@@ -366,24 +403,32 @@
     }
   };
 
+  async function startAnnotation() {
+      annotatorName = document.getElementById('annotator-name').value.trim();
+      if (!annotatorName) {
+          alert("Please enter your name.");
+          return;
+      }
+      
+      document.getElementById('name-modal').style.display = 'none';
+      await initializeSession();
+  }
+
   // Initialize session first
   async function initializeSession() {
-    try {
-      const res = await fetch("/start_annotation");
-      if (!res.ok) throw new Error("Failed to start annotation session");
-      const sessionData = await res.json();
-      
-      annotatorId = sessionData.annotator_id;
-      
-      document.getElementById("annotator-id").innerText = annotatorId;
-      document.getElementById("dataset-name").innerText = `${sessionData.total_sentences} sentences (${sessionData.overlap_sentences} overlap + ${sessionData.unique_sentences} unique)`;
-      
-      // Now load sentences
-      await loadSentences();
-    } catch (error) {
-      document.getElementById("sentence").innerText = "Error starting annotation session.";
-      console.error(error);
-    }
+      try {
+          const res = await fetch(`/start_annotation?name=${encodeURIComponent(annotatorName)}`);
+          if (!res.ok) throw new Error("Failed to start annotation session");
+          const sessionData = await res.json();
+          annotatorId = sessionData.annotator_id;
+          document.getElementById("annotator-id").value = annotatorId;
+          document.getElementById("dataset-name").value = `${sessionData.total_sentences} sentences (${sessionData.overlap_sentences} overlap + ${sessionData.unique_sentences} unique)`;
+          // Now load sentences
+          await loadSentences();
+      } catch (error) {
+          document.getElementById("sentence").innerText = "Error starting annotation session.";
+          console.error(error);
+      }
   }
 
   async function loadSentences() {
@@ -427,36 +472,34 @@
     return ann;
   }
 
-  // Save annotation for current sentence via POST to backend
   async function saveAnnotation() {
-    const labelAnnotation = gatherCurrentAnnotation();
-
-    // Save locally (optional)
-    annotations[currentIndex] = labelAnnotation;
-
-    // Prepare payload with correct structure
-    const payload = {
-      annotator_id: annotatorId,
-      sentence: sentences[currentIndex].sentence_text,
-      label: labelAnnotation
-    };
-
-    try {
-      document.getElementById("status").innerText = "Saving annotation...";
-      const res = await fetch("/api/save_annotation", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
-
-      if (!res.ok) {
-        throw new Error("Failed to save annotation");
+      const labelAnnotation = gatherCurrentAnnotation();
+      annotations[currentIndex] = labelAnnotation;
+      
+      const payload = {
+          annotator_id: annotatorId,
+          name: annotatorName,
+          sentence: sentences[currentIndex].sentence_text,
+          label: labelAnnotation
+      };
+      
+      try {
+          document.getElementById("status").innerText = "Saving annotation...";
+          const res = await fetch("/api/save_annotation", {
+              method: "POST",
+              headers: {
+                  "Content-Type": "application/json"
+              },
+              body: JSON.stringify(payload),
+          });
+          if (!res.ok) {
+              throw new Error("Failed to save annotation");
+          }
+          document.getElementById("status").innerText = `Annotation saved (Sentence ${currentIndex + 1})`;
+      } catch (error) {
+          console.error(error);
+          document.getElementById("status").innerText = "Error saving annotation. Please try again.";
       }
-      document.getElementById("status").innerText = `Annotation saved (Sentence ${currentIndex + 1})`;
-    } catch (error) {
-      console.error(error);
-      document.getElementById("status").innerText = "Error saving annotation. Please try again.";
-    }
   }
 
   function getAllLabels() {
@@ -525,7 +568,7 @@
   document.getElementById("prevBtn").addEventListener("click", prevSentence);
 
   // Start the application
-  initializeSession();
+  // initializeSession();
 </script>
 </body>
 </html>

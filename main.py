@@ -98,7 +98,7 @@ def get_used_sentences():
         print(f"Error getting used sentences: {e}")
         return set()
 
-def create_annotator_dataset(annotator_id):
+def create_annotator_dataset(annotator_id, name):
     """Create a dataset for a specific annotator"""
     all_sentences = load_all_sentences()
     if len(all_sentences) < SENTENCES_PER_ANNOTATOR:
@@ -141,13 +141,14 @@ def create_annotator_dataset(annotator_id):
     try:
         supabase.table("annotator_sessions").insert({
             "annotator_id": annotator_id,
+            "name": name,
             "total_sentences": len(annotator_dataset),
             "overlap_sentences": overlap_sentences,
             "unique_sentences": unique_sentences,
             "dataset": annotator_dataset,
             "created_at": datetime.datetime.now().isoformat()
         }).execute()
-        
+    
     except Exception as e:
         return None, f"Error saving session data: {e}"
     
@@ -155,27 +156,22 @@ def create_annotator_dataset(annotator_id):
 
 # === Start annotation session - Create dynamic dataset ===
 @app.get("/start_annotation")
-def start_annotation():
-    """
-    Start a new annotation session:
-    - Generate unique annotator ID
-    - Create dataset with fixed overlap + unique sentences
-    - Return session info
-    """
+def start_annotation(name: str = Query(..., description="Annotator's name")):
     annotator_id = str(uuid.uuid4())
     
     # Create dataset for this annotator
-    dataset, error = create_annotator_dataset(annotator_id)
+    dataset, error = create_annotator_dataset(annotator_id, name)
     
     if error:
         return {"error": error}
     
     return {
         "annotator_id": annotator_id,
+        "name": name,
         "total_sentences": len(dataset),
         "overlap_sentences": OVERLAP_COUNT,
         "unique_sentences": UNIQUE_COUNT,
-        "message": f"Dataset created with {len(dataset)} sentences"
+        "message": f"Dataset created with {len(dataset)} sentences for {name}"
     }
 
 # === Serve sentences for specific annotator ===
@@ -198,25 +194,18 @@ def get_sentences(annotator_id: str = Query(..., description="Annotator ID")):
 # === Save individual annotation ===
 @app.post("/api/save_annotation")
 async def save_annotation(payload: dict):
-    """
-    Save a single annotation to Supabase.
-    Expected payload:
-    {
-        "annotator_id": "uuid",
-        "sentence": "text of sentence",
-        "label": {"Economic": true, "Health_Safety": false, ...}
-    }
-    """
     annotator_id = payload.get("annotator_id")
+    name = payload.get("name")
     sentence = payload.get("sentence")
     label = payload.get("label")
     
-    if not all([annotator_id, sentence, label is not None]):
-        return {"error": "Missing required fields: annotator_id, sentence, label"}
-
+    if not all([annotator_id, name, sentence, label is not None]):
+        return {"error": "Missing required fields: annotator_id, name, sentence, label"}
+    
     # Create annotation record
     annotation_record = {
         "annotator_id": annotator_id,
+        "name": name,
         "sentence": sentence,
         "label": label,
         "timestamp": datetime.datetime.now().isoformat()
@@ -225,11 +214,11 @@ async def save_annotation(payload: dict):
     try:
         # Save to Supabase annotations table
         supabase.table("annotations").insert(annotation_record).execute()
-        
+    
     except Exception as e:
         return {"error": f"Failed to save annotation: {str(e)}"}
-
-    return {"status": "saved", "annotator_id": annotator_id}
+    
+    return {"status": "saved", "annotator_id": annotator_id, "name": name}
 
 # === Get annotation statistics ===
 @app.get("/api/stats")
