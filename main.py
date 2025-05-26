@@ -98,7 +98,7 @@ def get_used_sentences():
         print(f"Error getting used sentences: {e}")
         return set()
 
-def create_annotator_dataset(annotator_id, name):
+def create_annotator_dataset(annotator_id, annotator_name):
     """Create a dataset for a specific annotator"""
     all_sentences = load_all_sentences()
     if len(all_sentences) < SENTENCES_PER_ANNOTATOR:
@@ -141,7 +141,7 @@ def create_annotator_dataset(annotator_id, name):
     try:
         supabase.table("annotator_sessions").insert({
             "annotator_id": annotator_id,
-            "name": name,
+            "annotator_name": annotator_name,
             "total_sentences": len(annotator_dataset),
             "overlap_sentences": overlap_sentences,
             "unique_sentences": unique_sentences,
@@ -169,7 +169,7 @@ def start_annotation(name: str = Query(..., description="Annotator's name")):
     
     response = {
         "annotator_id": annotator_id,
-        "name": name,
+        "annotator_name": name,
         "total_sentences": len(dataset),
         "overlap_sentences": OVERLAP_COUNT,
         "unique_sentences": UNIQUE_COUNT,
@@ -201,17 +201,17 @@ def get_sentences(annotator_id: str = Query(..., description="Annotator ID")):
 @app.post("/api/save_annotation")
 async def save_annotation(payload: dict):
     annotator_id = payload.get("annotator_id")
-    name = payload.get("name")
+    annotator_name = payload.get("annotator_name")
     sentence = payload.get("sentence")
     label = payload.get("label")
     
-    if not all([annotator_id, name, sentence, label is not None]):
-        return {"error": "Missing required fields: annotator_id, name, sentence, label"}
+    if not all([annotator_id, annotator_name, sentence, label is not None]):
+        return {"error": "Missing required fields: annotator_id, annotator_name, sentence, label"}
     
     # Create annotation record
     annotation_record = {
         "annotator_id": annotator_id,
-        "name": name,
+        "annotator_name": annotator_name,
         "sentence": sentence,
         "label": label,
         "timestamp": datetime.datetime.now().isoformat()
@@ -224,7 +224,7 @@ async def save_annotation(payload: dict):
     except Exception as e:
         return {"error": f"Failed to save annotation: {str(e)}"}
     
-    return {"status": "saved", "annotator_id": annotator_id, "name": name}
+    return {"status": "saved", "annotator_id": annotator_id, "annotator_name": annotator_name}
 
 # === Get annotation statistics ===
 @app.get("/api/stats")
