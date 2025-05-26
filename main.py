@@ -157,15 +157,17 @@ def create_annotator_dataset(annotator_id, name):
 # === Start annotation session - Create dynamic dataset ===
 @app.get("/start_annotation")
 def start_annotation(name: str = Query(..., description="Annotator's name")):
+    print(f"Starting annotation for {name}")
     annotator_id = str(uuid.uuid4())
     
     # Create dataset for this annotator
     dataset, error = create_annotator_dataset(annotator_id, name)
     
     if error:
+        print(f"Error creating dataset: {error}")
         return {"error": error}
     
-    return {
+    response = {
         "annotator_id": annotator_id,
         "name": name,
         "total_sentences": len(dataset),
@@ -173,24 +175,28 @@ def start_annotation(name: str = Query(..., description="Annotator's name")):
         "unique_sentences": UNIQUE_COUNT,
         "message": f"Dataset created with {len(dataset)} sentences for {name}"
     }
+    print(f"Annotation session started: {response}")
+    return response
+
 
 # === Serve sentences for specific annotator ===
 @app.get("/api/sentences")
 def get_sentences(annotator_id: str = Query(..., description="Annotator ID")):
-    """
-    Get sentences for a specific annotator.
-    """
+    print(f"Getting sentences for annotator {annotator_id}")
     try:
         result = supabase.table("annotator_sessions").select("dataset").eq("annotator_id", annotator_id).execute()
         
         if not result.data:
+            print(f"No session found for annotator {annotator_id}")
             return {"error": f"No session found for annotator {annotator_id}"}
         
-        return result.data[0]["dataset"]
+        dataset = result.data[0]["dataset"]
+        print(f"Retrieved {len(dataset)} sentences for annotator {annotator_id}")
+        return dataset
         
     except Exception as e:
+        print(f"Error getting sentences: {str(e)}")
         return {"error": f"Failed to load dataset: {str(e)}"}
-
 # === Save individual annotation ===
 @app.post("/api/save_annotation")
 async def save_annotation(payload: dict):

@@ -417,34 +417,38 @@
   // Initialize session first
   async function initializeSession() {
       try {
+          console.log("Initializing session...");
           const res = await fetch(`/start_annotation?name=${encodeURIComponent(annotatorName)}`);
           if (!res.ok) throw new Error("Failed to start annotation session");
           const sessionData = await res.json();
+          console.log("Session data:", sessionData);
           annotatorId = sessionData.annotator_id;
           document.getElementById("annotator-id").value = annotatorId;
           document.getElementById("dataset-name").value = `${sessionData.total_sentences} sentences (${sessionData.overlap_sentences} overlap + ${sessionData.unique_sentences} unique)`;
           // Now load sentences
           await loadSentences();
       } catch (error) {
+          console.error("Error in initializeSession:", error);
           document.getElementById("sentence").innerText = "Error starting annotation session.";
-          console.error(error);
       }
   }
 
   async function loadSentences() {
-    try {
-      const res = await fetch(`/api/sentences?annotator_id=${annotatorId}`);
-      if (!res.ok) throw new Error("Failed to load sentences");
-      sentences = await res.json();
-      if (!sentences.length) {
-        document.getElementById("sentence").innerText = "No sentences loaded.";
-        return;
+      try {
+          console.log("Loading sentences...");
+          const res = await fetch(`/api/sentences?annotator_id=${annotatorId}`);
+          if (!res.ok) throw new Error("Failed to load sentences");
+          sentences = await res.json();
+          console.log("Loaded sentences:", sentences);
+          if (!sentences.length) {
+              document.getElementById("sentence").innerText = "No sentences loaded.";
+              return;
+          }
+          displaySentence();
+      } catch (error) {
+          console.error("Error in loadSentences:", error);
+          document.getElementById("sentence").innerText = "Error loading sentences.";
       }
-      displaySentence();
-    } catch (error) {
-      document.getElementById("sentence").innerText = "Error loading sentences.";
-      console.error(error);
-    }
   }
 
   function displaySentence() {
