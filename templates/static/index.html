@@ -413,82 +413,82 @@
 
   // Initialize session first
   async function initializeSession() {
-    // Show name modal first
-    document.getElementById('name-modal').style.display = 'block';
-    
-    // Wait for user to enter name and click start
-    return new Promise((resolve) => {
-      document.getElementById('start-annotation-btn').addEventListener('click', async () => {
-        const annotatorName = document.getElementById('annotator-name-input').value.trim();
-        document.getElementById('name-modal').style.display = 'none';
-        
-        try {
-          let url = "/start_annotation";
-          if (annotatorName) {
-            url += `?annotator_name=${encodeURIComponent(annotatorName)}`;
-          }
-          
-          const res = await fetch(url);
-          if (!res.ok) throw new Error("Failed to start annotation session");
-          
-          const sessionData = await res.json();
-          annotatorId = sessionData.annotator_id;
-          
-          // Store the annotator name for later use
-          if (sessionData.annotator_name) {
-            sessionStorage.setItem('annotator_name', sessionData.annotator_name);
-          }
-          
-          document.getElementById("annotator-id").innerText = annotatorId;
-          document.getElementById("dataset-name").innerText = `${sessionData.total_sentences} sentences (${sessionData.overlap_sentences} overlap + ${sessionData.unique_sentences} unique)`;
-          
-          // Now load sentences
-          await loadSentences();
-          resolve();
-        } catch (error) {
-          document.getElementById("sentence").innerText = "Error starting annotation session.";
-          console.error(error);
-          resolve();
-        }
+      // Show name modal first
+      document.getElementById('name-modal').style.display = 'block';
+      
+      // Wait for user to enter name and click start
+      return new Promise((resolve) => {
+          document.getElementById('start-annotation-btn').addEventListener('click', async () => {
+              const annotatorName = document.getElementById('annotator-name-input').value.trim();
+              document.getElementById('name-modal').style.display = 'none';
+              
+              try {
+                  let url = "/start_annotation";
+                  if (annotatorName) {
+                      url += `?annotator_name=${encodeURIComponent(annotatorName)}`;
+                  }
+                  
+                  const res = await fetch(url);
+                  if (!res.ok) throw new Error("Failed to start annotation session");
+                  
+                  const sessionData = await res.json();
+                  annotatorId = sessionData.annotator_id;
+                  
+                  // Store both ID and name in sessionStorage
+                  sessionStorage.setItem('annotator_id', annotatorId);
+                  if (sessionData.annotator_name) {
+                      sessionStorage.setItem('annotator_name', sessionData.annotator_name);
+                  }
+                  
+                  // Now load sentences with the valid annotatorId
+                  await loadSentences();
+                  resolve();
+              } catch (error) {
+                  document.getElementById("sentence").innerText = "Error starting annotation session: " + error.message;
+                  console.error(error);
+                  resolve();
+              }
+          }, { once: true }); // Important: only listen once to prevent multiple handlers
       });
-    });
   }
 
   async function loadSentences() {
+      // Get annotator_id from sessionStorage if not already set
+      if (!annotatorId) {
+          annotatorId = sessionStorage.getItem('annotator_id');
+      }
+      
+      if (!annotatorId) {
+          document.getElementById("sentence").innerText = "Error: No annotator ID found";
+          return;
+      }
+
       try {
           const res = await fetch(`/api/sentences?annotator_id=${annotatorId}`);
-          if (!res.ok) throw new Error("Failed to load sentences");
+          if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
           
           const data = await res.json();
+          
           if (data.error) {
               throw new Error(data.error);
           }
           
-          sentences = data.dataset;  // Now properly accessing the dataset field
-          if (!sentences || !sentences.length) {
-              document.getElementById("sentence").innerText = "No sentences loaded.";
+          if (!data.dataset) {
+              throw new Error("No dataset in response");
+          }
+          
+          sentences = data.dataset;
+          
+          if (!sentences.length) {
+              document.getElementById("sentence").innerText = "No sentences available for annotation";
               return;
           }
           
           displaySentence();
       } catch (error) {
           document.getElementById("sentence").innerText = "Error loading sentences: " + error.message;
-          console.error(error);
+          console.error("Error details:", error);
       }
-  }
-
-  function displaySentence() {
-    const sentence = sentences[currentIndex].sentence_text;
-    document.getElementById("sentence").innerText = sentence;
-
-    const ann = annotations[currentIndex] || {};
-    const labels = getAllLabels();
-    labels.forEach(label => {
-      const el = document.getElementById(label);
-      if (el) el.checked = ann[label] || false;
-    });
-
-    document.getElementById("status").innerText = `Sentence ${currentIndex + 1} of ${sentences.length}`;
   }
 
   // Get current labels checked as object

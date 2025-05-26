@@ -165,7 +165,20 @@ def start_annotation(annotator_name: str = Query(None)):
     if error:
         return {"error": error}
     
-    # Save session with annotator name if provided
+    # Prepare response data
+    response_data = {
+        "annotator_id": annotator_id,
+        "total_sentences": len(dataset),
+        "overlap_sentences": OVERLAP_COUNT,
+        "unique_sentences": UNIQUE_COUNT,
+        "message": f"Dataset created with {len(dataset)} sentences"
+    }
+    
+    # Add name to response if provided
+    if annotator_name:
+        response_data["annotator_name"] = annotator_name
+    
+    # Save session data
     session_data = {
         "annotator_id": annotator_id,
         "total_sentences": len(dataset),
@@ -183,14 +196,7 @@ def start_annotation(annotator_name: str = Query(None)):
     except Exception as e:
         return {"error": f"Error saving session data: {e}"}
     
-    return {
-        "annotator_id": annotator_id,
-        "annotator_name": annotator_name,
-        "total_sentences": len(dataset),
-        "overlap_sentences": OVERLAP_COUNT,
-        "unique_sentences": UNIQUE_COUNT,
-        "message": f"Dataset created with {len(dataset)} sentences"
-    }
+    return response_data
 
 # === Serve sentences for specific annotator ===
 @app.get("/api/sentences")
