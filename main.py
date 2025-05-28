@@ -23,8 +23,8 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 STATIC_DIR = os.path.join(BASE_DIR, "templates", "static")
 
 # === Configuration ===
-SENTENCES_PER_ANNOTATOR = 10
-OVERLAP_PERCENTAGE = 0.2
+SENTENCES_PER_ANNOTATOR = 100
+OVERLAP_PERCENTAGE = 0.3
 OVERLAP_COUNT = int(SENTENCES_PER_ANNOTATOR * OVERLAP_PERCENTAGE)  # 10 sentences
 UNIQUE_COUNT = SENTENCES_PER_ANNOTATOR - OVERLAP_COUNT  # 40 sentences
 
