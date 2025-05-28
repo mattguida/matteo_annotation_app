@@ -26,7 +26,6 @@ STATIC_DIR = os.path.join(BASE_DIR, "templates", "static")
 SENTENCES_PER_ANNOTATOR = 100
 OVERLAP_COUNT = 30
 UNIQUE_COUNT = 70
-OVERLAP_PERCENTAGE = (OVERLAP_COUNT / SENTENCES_PER_ANNOTATOR) * 100
 
 
 # === Mount static files ===
@@ -99,6 +98,7 @@ def get_used_sentences():
         print(f"Error getting used sentences: {e}")
         return set()
 
+
 def create_annotator_dataset(annotator_id, annotator_name):
     """Create a dataset for a specific annotator"""
     all_sentences = load_all_sentences()
@@ -113,54 +113,34 @@ def create_annotator_dataset(annotator_id, annotator_name):
     # Get sentences that aren't part of the overlap
     non_overlap_sentences = [s for s in all_sentences if s not in overlap_sentences]
     
-    # Get already used unique sentences
-    used_sentences = get_used_sentences()
-    
-    # Find available unique sentences (not used by previous annotators)
-    available_unique = []
-    for sentence in non_overlap_sentences:
-        sentence_key = json.dumps(sentence, sort_keys=True)
-        if sentence_key not in used_sentences:
-            available_unique.append(sentence)
-    
-    if len(available_unique) < UNIQUE_COUNT:
-        return None, f"Not enough unique sentences available. Need {UNIQUE_COUNT}, have {len(available_unique)}"
-    
     # Select unique sentences for this annotator
-    unique_sentences = random.sample(available_unique, UNIQUE_COUNT)
+    unique_sentences = random.sample(non_overlap_sentences, UNIQUE_COUNT)
     
     # Combine overlap and unique sentences
     annotator_dataset = overlap_sentences + unique_sentences
     random.shuffle(annotator_dataset)
     
-    # Add metadata while preserving original structure
-    processed_dataset = []
+    # Add metadata
     for i, sentence in enumerate(annotator_dataset):
-        # Create a new dict that preserves the original sentence_text
-        processed_sentence = {
-            'sentence_id': f"{annotator_id}_sent{i+1}",
-            'is_overlap': sentence in overlap_sentences,
-            'sentence_text': sentence['sentence_text'],  # Explicitly preserve the text
-            'original_data': sentence  # Keep original data if needed
-        }
-        processed_dataset.append(processed_sentence)
+        sentence['sentence_id'] = f"{annotator_id}_sent{i+1}"
+        sentence['is_overlap'] = sentence in overlap_sentences
     
     # Save session data to Supabase
     try:
         supabase.table("annotator_sessions").insert({
             "annotator_id": annotator_id,
             "annotator_name": annotator_name,
-            "total_sentences": len(processed_dataset),
+            "total_sentences": len(annotator_dataset),
             "overlap_sentences": overlap_sentences,
             "unique_sentences": unique_sentences,
-            "dataset": processed_dataset,
+            "dataset": annotator_dataset,
             "created_at": datetime.datetime.now().isoformat()
         }).execute()
     
     except Exception as e:
         return None, f"Error saving session data: {e}"
     
-    return processed_dataset, None
+    return annotator_dataset, None
 
 # === Start annotation session - Create dynamic dataset ===
 @app.get("/start_annotation")
@@ -210,29 +190,29 @@ def get_sentences(annotator_id: str = Query(..., description="Annotator ID")):
 async def save_annotation(payload: dict):
     annotator_id = payload.get("annotator_id")
     annotator_name = payload.get("annotator_name")
-    sentence_data = payload.get("sentence")  # Now gets the whole sentence object
+    sentence = payload.get("sentence")
     label = payload.get("label")
     
-    if not all([annotator_id, annotator_name, sentence_data, label is not None]):
-        return {"error": "Missing required fields"}
+    if not all([annotator_id, annotator_name, sentence, label is not None]):
+        return {"error": "Missing required fields: annotator_id, annotator_name, sentence, label"}
     
     # Create annotation record
     annotation_record = {
         "annotator_id": annotator_id,
         "annotator_name": annotator_name,
-        "sentence_id": sentence_data.get("sentence_id"),
-        "sentence_text": sentence_data.get("sentence_text"),
-        "is_overlap": sentence_data.get("is_overlap", False),
+        "sentence": sentence,
         "label": label,
         "timestamp": datetime.datetime.now().isoformat()
     }
     
     try:
+        # Save to Supabase annotations table
         supabase.table("annotations").insert(annotation_record).execute()
+    
     except Exception as e:
         return {"error": f"Failed to save annotation: {str(e)}"}
     
-    return {"status": "saved"}
+    return {"status": "saved", "annotator_id": annotator_id, "annotator_name": annotator_name}
 
 # === Get annotation statistics ===
 @app.get("/api/stats")
