@@ -29,9 +29,9 @@ STATIC_DIR = os.path.join(BASE_DIR, "templates", "static")
 # UNIQUE_COUNT = SENTENCES_PER_ANNOTATOR - OVERLAP_COUNT  # 40 sentences
 
 SENTENCES_PER_ANNOTATOR = 100
-OVERLAP_COUNT = 30
-UNIQUE_COUNT = SENTENCES_PER_ANNOTATOR - OVERLAP_COUNT  # 70 unique sentences per annotator
-OVERLAP_PERCENTAGE = OVERLAP_COUNT / SENTENCES_PER_ANNOTATOR  # 0.3 (30%)
+OVERLAP_COUNT = 30  # Same 30 sentences for ALL annotators
+UNIQUE_COUNT = SENTENCES_PER_ANNOTATOR - OVERLAP_COUNT  # 70 random per annotator
+OVERLAP_PERCENTAGE = OVERLAP_COUNT / SENTENCES_PER_ANNOTATOR  # 0.3
 
 
 # === Mount static files ===
@@ -86,53 +86,44 @@ def get_or_create_overlap_sentences():
         print(f"Error handling overlap sentences: {e}")
         return []
 
-def get_used_sentences():
-    """Get all sentences that have already been assigned to previous annotators"""
-    try:
-        # Get all unique sentences from annotator sessions
-        result = supabase.table("annotator_sessions").select("unique_sentences").execute()
+# def get_used_sentences():
+#     """Get all sentences that have already been assigned to previous annotators"""
+#     try:
+#         # Get all unique sentences from annotator sessions
+#         result = supabase.table("annotator_sessions").select("unique_sentences").execute()
         
-        used_sentences = set()
-        for session in result.data:
-            for sentence in session.get("unique_sentences", []):
-                sentence_key = json.dumps(sentence, sort_keys=True)
-                used_sentences.add(sentence_key)
+#         used_sentences = set()
+#         for session in result.data:
+#             for sentence in session.get("unique_sentences", []):
+#                 sentence_key = json.dumps(sentence, sort_keys=True)
+#                 used_sentences.add(sentence_key)
         
-        return used_sentences
+#         return used_sentences
         
-    except Exception as e:
-        print(f"Error getting used sentences: {e}")
-        return set()
+#     except Exception as e:
+#         print(f"Error getting used sentences: {e}")
+#         return set()
 
 def create_annotator_dataset(annotator_id, annotator_name):
-    """Create a dataset for a specific annotator"""
+    """Create a dataset for a specific annotator with random sampling"""
     all_sentences = load_all_sentences()
     if len(all_sentences) < SENTENCES_PER_ANNOTATOR:
         return None, f"Not enough sentences in dataset. Need {SENTENCES_PER_ANNOTATOR}, have {len(all_sentences)}"
     
-    # Get the fixed overlap sentences
+    # Get the fixed overlap sentences (same for all annotators)
     overlap_sentences = get_or_create_overlap_sentences()
     if len(overlap_sentences) != OVERLAP_COUNT:
         return None, f"Could not create overlap sentences. Expected {OVERLAP_COUNT}, got {len(overlap_sentences)}"
     
-    # Get sentences that aren't part of the overlap
+    # Get sentences that aren't part of the overlap pool
     non_overlap_sentences = [s for s in all_sentences if s not in overlap_sentences]
     
-    # Get already used unique sentences
-    used_sentences = get_used_sentences()
+    # Check if we have enough non-overlap sentences
+    if len(non_overlap_sentences) < UNIQUE_COUNT:
+        return None, f"Not enough non-overlap sentences. Need {UNIQUE_COUNT}, have {len(non_overlap_sentences)}"
     
-    # Find available unique sentences (not used by previous annotators)
-    available_unique = []
-    for sentence in non_overlap_sentences:
-        sentence_key = json.dumps(sentence, sort_keys=True)
-        if sentence_key not in used_sentences:
-            available_unique.append(sentence)
-    
-    if len(available_unique) < UNIQUE_COUNT:
-        return None, f"Not enough unique sentences available. Need {UNIQUE_COUNT}, have {len(available_unique)}"
-    
-    # Select unique sentences for this annotator
-    unique_sentences = random.sample(available_unique, UNIQUE_COUNT)
+    # RANDOM SAMPLING: Select random sentences from non-overlap pool (allows repeats across annotators)
+    unique_sentences = random.sample(non_overlap_sentences, UNIQUE_COUNT)
     
     # Combine overlap and unique sentences
     annotator_dataset = overlap_sentences + unique_sentences
@@ -293,10 +284,10 @@ def get_system_info():
     try:
         all_sentences = load_all_sentences()
         overlap_sentences = get_or_create_overlap_sentences()
-        used_sentences = get_used_sentences()
         
-        remaining_unique = len(all_sentences) - len(overlap_sentences) - len(used_sentences)
-        max_additional_annotators = remaining_unique // UNIQUE_COUNT
+        # Count current annotators
+        annotators_result = supabase.table("annotator_sessions").select("annotator_id").execute()
+        current_annotators = len(annotators_result.data)
         
         return {
             "total_sentences_in_dataset": len(all_sentences),
@@ -304,9 +295,9 @@ def get_system_info():
             "overlap_sentences": OVERLAP_COUNT,
             "unique_sentences_per_annotator": UNIQUE_COUNT,
             "overlap_percentage": OVERLAP_PERCENTAGE,
-            "sentences_already_used": len(used_sentences),
-            "remaining_unique_sentences": remaining_unique,
-            "max_additional_annotators": max_additional_annotators
+            "current_annotators": current_annotators,
+            "capacity": "Unlimited (random sampling allows repeats)",
+            "non_overlap_pool_size": len(all_sentences) - len(overlap_sentences)
         }
         
     except Exception as e:
