@@ -57,18 +57,18 @@ def get_or_create_overlap_sentences():
         # Check if overlap sentences exist in Supabase
         result = supabase.table("overlap_sentences").select("*").execute()
         
-        if result.data:
+        if result.data and len(result.data[0]["sentences"]) == OVERLAP_COUNT:
             return result.data[0]["sentences"]
         
-        # Create new overlap sentences if none exist
+        # Create new overlap sentences if none exist or if the count is incorrect
         all_sentences = load_all_sentences()
         if len(all_sentences) < OVERLAP_COUNT:
-            return []
+            raise ValueError(f"Not enough sentences in dataset. Need at least {OVERLAP_COUNT}, have {len(all_sentences)}")
         
         overlap_sentences = random.sample(all_sentences, OVERLAP_COUNT)
         
         # Save overlap sentences to Supabase
-        supabase.table("overlap_sentences").insert({
+        supabase.table("overlap_sentences").upsert({
             "id": 1,  # Use fixed ID since we only need one set
             "sentences": overlap_sentences,
             "created_at": datetime.datetime.now().isoformat()

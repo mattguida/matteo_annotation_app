@@ -604,18 +604,18 @@
   });
 
   async function nextSentence() {
-    await saveAnnotation();
+      await saveAnnotation();
 
-    if (currentIndex < sentences.length - 1) {
-        currentIndex++;
-        displaySentence();
-    } else {
-        document.getElementById("sentence").innerText = "🎉 You have finished annotating all sentences. 🎉 Thank you! You may now close this window.";
-        document.getElementById("labels").style.display = "none";
-        document.getElementById("nextBtn").style.display = "none";
-        document.getElementById("prevBtn").style.display = "none";
-        document.getElementById("status").innerText = "";
-    }
+      if (currentIndex < SENTENCES_PER_ANNOTATOR - 1) {
+          currentIndex++;
+          displaySentence();
+      } else {
+          document.getElementById("sentence").innerText = "🎉 You have finished annotating all sentences. 🎉 Thank you! You may now close this window.";
+          document.getElementById("labels").style.display = "none";
+          document.getElementById("nextBtn").style.display = "none";
+          document.getElementById("prevBtn").style.display = "none";
+          document.getElementById("status").innerText = "";
+      }
   }
 
   async function prevSentence() {
