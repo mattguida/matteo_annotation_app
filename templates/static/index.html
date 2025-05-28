@@ -508,17 +508,18 @@
   }
 
   function displaySentence() {
-    const sentence = sentences[currentIndex].sentence_text;
-    document.getElementById("sentence").innerText = sentence;
+      const currentSentence = sentences[currentIndex];
+      // Use the processed sentence_text field
+      document.getElementById("sentence").innerText = currentSentence.sentence_text;
 
-    const ann = annotations[currentIndex] || {};
-    const labels = getAllLabels();
-    labels.forEach(label => {
-      const el = document.getElementById(label);
-      if (el) el.checked = ann[label] || false;
-    });
+      const ann = annotations[currentIndex] || {};
+      const labels = getAllLabels();
+      labels.forEach(label => {
+        const el = document.getElementById(label);
+        if (el) el.checked = ann[label] || false;
+      });
 
-    document.getElementById("status").innerText = `Sentence ${currentIndex + 1} of ${sentences.length}`;
+      document.getElementById("status").innerText = `Sentence ${currentIndex + 1} of ${sentences.length}`;
   }
 
   // Get current labels checked as object
