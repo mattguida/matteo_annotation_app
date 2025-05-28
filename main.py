@@ -23,10 +23,16 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 STATIC_DIR = os.path.join(BASE_DIR, "templates", "static")
 
 # === Configuration ===
+# SENTENCES_PER_ANNOTATOR = 100
+# OVERLAP_PERCENTAGE = 0.3
+# OVERLAP_COUNT = int(SENTENCES_PER_ANNOTATOR * OVERLAP_PERCENTAGE)  # 10 sentences
+# UNIQUE_COUNT = SENTENCES_PER_ANNOTATOR - OVERLAP_COUNT  # 40 sentences
+
 SENTENCES_PER_ANNOTATOR = 100
-OVERLAP_PERCENTAGE = 0.3
-OVERLAP_COUNT = int(SENTENCES_PER_ANNOTATOR * OVERLAP_PERCENTAGE)  # 10 sentences
-UNIQUE_COUNT = SENTENCES_PER_ANNOTATOR - OVERLAP_COUNT  # 40 sentences
+OVERLAP_COUNT = 30
+UNIQUE_COUNT = SENTENCES_PER_ANNOTATOR - OVERLAP_COUNT  # 70 unique sentences per annotator
+OVERLAP_PERCENTAGE = OVERLAP_COUNT / SENTENCES_PER_ANNOTATOR  # 0.3 (30%)
+
 
 # === Mount static files ===
 app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
