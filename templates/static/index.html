@@ -431,6 +431,8 @@
 <div id="status"></div>
 
 <script>
+  const SENTENCES_PER_ANNOTATOR = 100;
+
   window.onload = function() {
       document.getElementById('name-modal').style.display = 'flex';
   }
@@ -508,17 +510,17 @@
   }
 
   function displaySentence() {
-    const sentence = sentences[currentIndex].sentence_text;
-    document.getElementById("sentence").innerText = sentence;
+      const sentence = sentences[currentIndex].sentence_text;
+      document.getElementById("sentence").innerText = sentence;
 
-    const ann = annotations[currentIndex] || {};
-    const labels = getAllLabels();
-    labels.forEach(label => {
-      const el = document.getElementById(label);
-      if (el) el.checked = ann[label] || false;
-    });
+      const ann = annotations[currentIndex] || {};
+      const labels = getAllLabels();
+      labels.forEach(label => {
+        const el = document.getElementById(label);
+        if (el) el.checked = ann[label] || false;
+      });
 
-    document.getElementById("status").innerText = `Sentence ${currentIndex + 1} of ${sentences.length}`;
+      document.getElementById("status").innerText = `Sentence ${currentIndex + 1} of ${SENTENCES_PER_ANNOTATOR}`;
   }
 
   // Get current labels checked as object

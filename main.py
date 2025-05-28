@@ -158,10 +158,10 @@ def start_annotation(name: str = Query(..., description="Annotator's name")):
     response = {
         "annotator_id": annotator_id,
         "annotator_name": name,
-        "total_sentences": len(dataset),
+        "total_sentences": SENTENCES_PER_ANNOTATOR,
         "overlap_sentences": OVERLAP_COUNT,
         "unique_sentences": UNIQUE_COUNT,
-        "message": f"Dataset created with {len(dataset)} sentences for {name}"
+        "message": f"Dataset created with {SENTENCES_PER_ANNOTATOR} sentences for {name}"
     }
     print(f"Annotation session started: {response}")
     return response
@@ -285,7 +285,7 @@ def get_system_info():
             "sentences_per_annotator": SENTENCES_PER_ANNOTATOR,
             "overlap_sentences": OVERLAP_COUNT,
             "unique_sentences_per_annotator": UNIQUE_COUNT,
-            "overlap_percentage": OVERLAP_PERCENTAGE,
+            "overlap_percentage": OVERLAP_COUNT / SENTENCES_PER_ANNOTATOR,
             "sentences_already_used": len(used_sentences),
             "remaining_unique_sentences": remaining_unique,
             "max_additional_annotators": max_additional_annotators
