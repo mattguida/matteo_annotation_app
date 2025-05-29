@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 STATIC_DIR = os.path.join(BASE_DIR, "templates", "static")
 
 # === Configuration ===
-SENTENCES_PER_ANNOTATOR = 100
-OVERLAP_COUNT = 30
-UNIQUE_COUNT = 70
+SENTENCES_PER_ANNOTATOR = 10
+OVERLAP_COUNT = 2
+UNIQUE_COUNT = 8
 
 
 # === Mount static files ===
@@ -196,23 +196,50 @@ async def save_annotation(payload: dict):
     if not all([annotator_id, annotator_name, sentence, label is not None]):
         return {"error": "Missing required fields: annotator_id, annotator_name, sentence, label"}
     
-    # Create annotation record
-    annotation_record = {
-        "annotator_id": annotator_id,
-        "annotator_name": annotator_name,
-        "sentence": sentence,
-        "label": label,
-        "timestamp": datetime.datetime.now().isoformat()
-    }
-    
     try:
-        # Save to Supabase annotations table
-        supabase.table("annotations").insert(annotation_record).execute()
+        # Check if annotation already exists for this annotator and sentence
+        existing_result = supabase.table("annotations")\
+            .select("id")\
+            .eq("annotator_id", annotator_id)\
+            .eq("sentence", sentence)\
+            .execute()
+        
+        annotation_data = {
+            "annotator_name": annotator_name,
+            "label": label,
+            "timestamp": datetime.datetime.now().isoformat()
+        }
+        
+        if existing_result.data:
+            # Update existing annotation
+            supabase.table("annotations")\
+                .update(annotation_data)\
+                .eq("annotator_id", annotator_id)\
+                .eq("sentence", sentence)\
+                .execute()
+            action = "updated"
+        else:
+            # Insert new annotation
+            annotation_record = {
+                "annotator_id": annotator_id,
+                "annotator_name": annotator_name,
+                "sentence": sentence,
+                "label": label,
+                "timestamp": datetime.datetime.now().isoformat()
+            }
+            supabase.table("annotations").insert(annotation_record).execute()
+            action = "created"
     
     except Exception as e:
         return {"error": f"Failed to save annotation: {str(e)}"}
     
-    return {"status": "saved", "annotator_id": annotator_id, "annotator_name": annotator_name}
+    return {
+        "status": "saved", 
+        "action": action,
+        "annotator_id": annotator_id, 
+        "annotator_name": annotator_name
+    }
+
 
 # === Get annotation statistics ===
 @app.get("/api/stats")
