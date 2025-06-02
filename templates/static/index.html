@@ -534,6 +534,10 @@
 <button id="prevBtn">Previous</button>
 <button id="nextBtn">Next</button>
 
+<button id="checkAnswerBtn" style="display: none;">Check Answer</button>
+<button id="nextExampleBtn" style="display: none;">Next Example</button>
+<button id="startAnnotationBtn" style="display: none;">Start Annotation</button>
+
 
 <div id="status"></div>
 
@@ -613,7 +617,6 @@
       document.getElementById("status").innerHTML = `<strong>📚 Let's practice with some examples before starting annotation!`;
       displayTutorialExample();
   }
-
   function displayTutorialExample() {
       const example = tutorialExamples[tutorialIndex];
       document.getElementById("sentence").innerText = example.sentence;
@@ -626,9 +629,10 @@
       });
       
       // Set button text for tutorial
-      document.getElementById("nextBtn").innerText = "Check Answer";
+      document.getElementById("checkAnswerBtn").style.display = "inline-block";
+      document.getElementById("nextExampleBtn").style.display = "none";
+      document.getElementById("startAnnotationBtn").style.display = "none";
       document.getElementById("prevBtn").style.display = tutorialIndex === 0 ? "none" : "inline-block";
-      document.getElementById("nextExampleBtn").style.display = "none"; // Hide "Next Example" button initially
   }
 
   function checkTutorialAnswer() {
@@ -657,11 +661,11 @@
       
       // Show the "Next Example" button or "Start Annotation" for the last example
       if (tutorialIndex < tutorialExamples.length - 1) {
-          document.getElementById("nextExampleBtn").innerText = "Next Example";
+          document.getElementById("nextExampleBtn").style.display = "inline-block";
       } else {
-          document.getElementById("nextExampleBtn").innerText = "Start Annotation";
+          document.getElementById("startAnnotationBtn").style.display = "inline-block";
       }
-      document.getElementById("nextExampleBtn").style.display = "inline-block";
+      document.getElementById("checkAnswerBtn").style.display = "none";
   }
 
   function nextTutorialExample() {
@@ -672,17 +676,24 @@
           finishTutorial();
       }
   }
-  async function finishTutorial() {
+
+  function finishTutorial() {
       inTutorial = false; // Set the tutorial flag to false
-      document.getElementById("nextBtn").style.display = "none"; // Hide the "Check Answer" button
+      document.getElementById("checkAnswerBtn").style.display = "none"; // Hide the "Check Answer" button
       document.getElementById("prevBtn").style.display = "none"; // Hide the "Previous Example" button
       document.getElementById("nextExampleBtn").style.display = "none"; // Hide the "Next Example" button
+      document.getElementById("startAnnotationBtn").style.display = "none"; // Hide the "Start Annotation" button
 
       document.getElementById("status").innerHTML = `<strong>🎯 Great job! Tutorial complete.</strong> Now you'll begin the real annotation task...`;
 
       // Initialize the annotation session
-      await initializeSession();
+      initializeSession();
   }
+
+  document.getElementById("checkAnswerBtn").addEventListener("click", checkTutorialAnswer);
+  document.getElementById("nextExampleBtn").addEventListener("click", nextTutorialExample);
+  document.getElementById("startAnnotationBtn").addEventListener("click", finishTutorial);
+
   async function initializeSession() {
       try {
           console.log("Initializing session...");
