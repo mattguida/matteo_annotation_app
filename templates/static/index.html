@@ -625,7 +625,7 @@
         if (el) el.checked = false;
       });
       
-      // Update button text for tutorial
+      // Set button text for tutorial
       document.getElementById("nextBtn").innerText = "Check Answer";
       document.getElementById("prevBtn").style.display = tutorialIndex === 0 ? "none" : "inline-block";
       document.getElementById("nextExampleBtn").style.display = "none"; // Hide "Next Example" button initially
@@ -655,13 +655,13 @@
           });
       }
       
-      // Show the "Next Example" button if not the last example
+      // Show the "Next Example" button or "Start Annotation" for the last example
       if (tutorialIndex < tutorialExamples.length - 1) {
-          document.getElementById("nextExampleBtn").style.display = "inline-block";
+          document.getElementById("nextExampleBtn").innerText = "Next Example";
       } else {
-          // Change the "Next" button to "Start Real Annotation" for the last example
-          document.getElementById("nextBtn").innerText = "Start Real Annotation";
+          document.getElementById("nextExampleBtn").innerText = "Start Annotation";
       }
+      document.getElementById("nextExampleBtn").style.display = "inline-block";
   }
 
   function nextTutorialExample() {
@@ -672,7 +672,6 @@
           finishTutorial();
       }
   }
-
   async function finishTutorial() {
       inTutorial = false; // Set the tutorial flag to false
       document.getElementById("nextBtn").style.display = "none"; // Hide the "Check Answer" button
