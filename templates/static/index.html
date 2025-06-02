@@ -57,7 +57,7 @@
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     width: 90%;
-    max-width: 800px;
+    max-width: 900px;
     max-height: 85vh;
     overflow-y: auto;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -84,6 +84,14 @@
     margin-bottom: 15px;
   }
 
+  #modal h3 {
+    color: #34495e;
+    margin-top: 25px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 5px;
+  }
+
   #modal p {
     margin-bottom: 12px;
     font-size: 16px;
@@ -91,6 +99,61 @@
 
   #modal strong {
     color: #34495e;
+  }
+
+  /* Example styling */
+  .example-container {
+    background: #ffffff;
+    border: 2px solid #3498db;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+
+  .example-sentence {
+    background: #e8f4fd;
+    padding: 15px;
+    border-radius: 8px;
+    font-style: italic;
+    margin-bottom: 15px;
+    border-left: 4px solid #3498db;
+  }
+
+  .example-labels {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 15px 0;
+  }
+
+  .example-label {
+    padding: 6px 12px;
+    border-radius: 15px;
+    color: white;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  .example-label.economic {
+    background: #f9a825;
+  }
+
+  .example-label.legality-crime {
+    background: #00796b;
+  }
+
+  .example-label.public-opinion {
+    background: #e64a19;
+  }
+
+  .example-explanation {
+    background: #f8f9fa;
+    padding: 12px;
+    border-radius: 6px;
+    border-left: 3px solid #28a745;
+    font-size: 14px;
+    color: #495057;
   }
 
   #sentence {
@@ -383,6 +446,48 @@
 
     <p><strong>None</strong><br>
     Description: If the sentence is not framed in any of the proposed labels above, please select this label.<br>
+
+    <h3>📚 Annotation Examples</h3>
+
+    <div class="example-container">
+      <strong>Example 1: Economic Framing</strong>
+      <div class="example-sentence">
+        "Government spending in and of itself is not a bad thing."
+      </div>
+      <div class="example-labels">
+        <span class="example-label economic">Economic</span>
+      </div>
+      <div class="example-explanation">
+        <strong>Analysis:</strong> This sentence clearly frames an issue through an economic lens by directly discussing government spending and its financial implications. It presents a monetary/financial perspective on policy, which is the core of economic framing.
+      </div>
+    </div>
+
+    <div class="example-container">
+      <strong>Example 2: Legality and Crime Framing</strong>
+      <div class="example-sentence">
+        "Deliberate destruction of subpoenaed evidence is felony obstruction of justice."
+      </div>
+      <div class="example-labels">
+        <span class="example-label legality-crime">Legality and Crime</span>
+      </div>
+      <div class="example-explanation">
+        <strong>Analysis:</strong> This sentence frames the issue through legal constraints and criminal law by referencing specific legal violations, criminal charges, and judicial processes. It focuses on law enforcement and legal consequences.
+      </div>
+    </div>
+
+    <div class="example-container">
+      <strong>Example 3: Public Opinion Framing</strong>
+      <div class="example-sentence">
+        "A 2010 QMI poll found that 71.6 per cent of Canadians outside Quebec say they're very attached to Canada."
+      </div>
+      <div class="example-labels">
+        <span class="example-label public-opinion">Public Opinion</span>
+      </div>
+      <div class="example-explanation">
+        <strong>Analysis:</strong> This sentence frames an issue through public opinion by directly citing polling data and demographic information about social attitudes.
+      </div>
+    </div>
+
   </div>
 </div>
 
