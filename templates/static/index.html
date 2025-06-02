@@ -540,7 +540,15 @@
   const SENTENCES_PER_ANNOTATOR = 100;
 
   window.onload = function() {
+    if (localStorage.getItem('instructionsRead') === 'true') {
+      // Clear the flag so it only works once
+      localStorage.removeItem('instructionsRead');
+      // Start the tutorial immediately
+      startTutorial();
+    } else {
+      // Show the name input modal as before
       document.getElementById('name-modal').style.display = 'flex';
+    }
   }
   let sentences = [];
   let currentIndex = 0;
@@ -673,7 +681,7 @@
       document.getElementById("prevBtn").innerText = "Previous";
       document.getElementById("prevBtn").style.display = "inline-block";
       
-      document.getElementById("status").innerHTML = `<strong>🎯 Great! Tutorial complete.</strong> Starting real annotation...`;
+      document.getElementById("status").innerHTML = `<strong>🎯 Great job! Tutorial complete.</strong> Now you'll begin the real annotation task...`;
       
       await initializeSession();
   }
