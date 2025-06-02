@@ -530,14 +530,16 @@
   </div>
 
 </div>
-
-<button id="prevBtn">Previous</button>
-<button id="nextBtn">Next</button>
-
+<!-- Tutorial-specific buttons -->
 <button id="checkAnswerBtn" style="display: none;">Check Answer</button>
 <button id="nextExampleBtn" style="display: none;">Next Example</button>
-<button id="startAnnotationBtn" style="display: none;">Start Annotation</button>
 
+<!-- Main annotation navigation buttons -->
+<button id="prevBtn" style="display: none;">Previous</button>
+<button id="nextBtn" style="display: none;">Next</button>
+
+<!-- Start Annotation button -->
+<button id="startAnnotationBtn" style="display: none;">Start Annotation</button>
 
 <div id="status"></div>
 
@@ -617,6 +619,7 @@
       document.getElementById("status").innerHTML = `<strong>📚 Let's practice with some examples before starting annotation!`;
       displayTutorialExample();
   }
+  
   function displayTutorialExample() {
       const example = tutorialExamples[tutorialIndex];
       document.getElementById("sentence").innerText = example.sentence;
@@ -628,11 +631,12 @@
         if (el) el.checked = false;
       });
       
-      // Set button text for tutorial
+      // Show tutorial-specific buttons
       document.getElementById("checkAnswerBtn").style.display = "inline-block";
       document.getElementById("nextExampleBtn").style.display = "none";
+      document.getElementById("prevBtn").style.display = "none"; // Hide "Previous" button
+      document.getElementById("nextBtn").style.display = "none"; // Hide "Next" button
       document.getElementById("startAnnotationBtn").style.display = "none";
-      document.getElementById("prevBtn").style.display = tutorialIndex === 0 ? "none" : "inline-block";
   }
 
   function checkTutorialAnswer() {
@@ -680,9 +684,12 @@
   function finishTutorial() {
       inTutorial = false; // Set the tutorial flag to false
       document.getElementById("checkAnswerBtn").style.display = "none"; // Hide the "Check Answer" button
-      document.getElementById("prevBtn").style.display = "none"; // Hide the "Previous Example" button
       document.getElementById("nextExampleBtn").style.display = "none"; // Hide the "Next Example" button
       document.getElementById("startAnnotationBtn").style.display = "none"; // Hide the "Start Annotation" button
+
+      // Show main annotation navigation buttons
+      document.getElementById("prevBtn").style.display = "inline-block";
+      document.getElementById("nextBtn").style.display = "inline-block";
 
       document.getElementById("status").innerHTML = `<strong>🎯 Great job! Tutorial complete.</strong> Now you'll begin the real annotation task...`;
 
