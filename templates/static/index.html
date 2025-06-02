@@ -686,18 +686,24 @@
 
   function finishTutorial() {
       inTutorial = false; // Set the tutorial flag to false
-      document.getElementById("checkAnswerBtn").style.display = "none"; // Hide the "Check Answer" button
-      document.getElementById("nextExampleBtn").style.display = "none"; // Hide the "Next Example" button
-      document.getElementById("startAnnotationBtn").style.display = "none"; // Hide the "Start Annotation" button
 
-      // Show main annotation navigation buttons
-      document.getElementById("prevBtn").style.display = "inline-block";
-      document.getElementById("nextBtn").style.display = "inline-block";
+      // Hide tutorial-specific buttons
+      document.getElementById("checkAnswerBtn").style.display = "none";
+      document.getElementById("nextExampleBtn").style.display = "none";
+      document.getElementById("startAnnotationBtn").style.display = "none";
 
+      // Display completion message
       document.getElementById("status").innerHTML = `<strong>🎯 Great job! Tutorial complete.</strong> Now you'll begin the real annotation task...`;
 
-      // Initialize the annotation session
-      initializeSession();
+      // Wait for 6 seconds before transitioning to the main annotation session
+      setTimeout(() => {
+          // Show main annotation navigation buttons
+          document.getElementById("prevBtn").style.display = "inline-block";
+          document.getElementById("nextBtn").style.display = "inline-block";
+
+          // Initialize the annotation session
+          initializeSession();
+      }, 10000); // 6000 milliseconds = 6 seconds
   }
 
   document.getElementById("checkAnswerBtn").addEventListener("click", checkTutorialAnswer);
