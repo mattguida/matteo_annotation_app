@@ -534,6 +534,7 @@
 <button id="prevBtn">Previous</button>
 <button id="nextBtn">Next</button>
 
+
 <div id="status"></div>
 
 <script>
@@ -625,11 +626,9 @@
       });
       
       // Update button text for tutorial
-      document.getElementById("nextBtn").innerText = tutorialIndex === tutorialExamples.length - 1 ? "Start Real Annotation" : "Check Answer";
+      document.getElementById("nextBtn").innerText = "Check Answer";
       document.getElementById("prevBtn").style.display = tutorialIndex === 0 ? "none" : "inline-block";
-      if (tutorialIndex > 0) {
-          document.getElementById("prevBtn").innerText = "Previous Example";
-      }
+      document.getElementById("nextExampleBtn").style.display = "none"; // Hide "Next Example" button initially
   }
 
   function checkTutorialAnswer() {
@@ -641,19 +640,10 @@
       
       const correctLabels = example.correctLabels;
       const isCorrect = selectedLabels.length === correctLabels.length && 
-                       selectedLabels.every(label => correctLabels.includes(label));
+                      selectedLabels.every(label => correctLabels.includes(label));
       
       if (isCorrect) {
           document.getElementById("status").innerHTML = `<span style="color: green;">✅ Correct!</span> ${example.explanation}`;
-          
-          setTimeout(() => {
-              if (tutorialIndex < tutorialExamples.length - 1) {
-                  tutorialIndex++;
-                  displayTutorialExample();
-              } else {
-                  finishTutorial();
-              }
-          }, 3000);
       } else {
           document.getElementById("status").innerHTML = `<span style="color: red;">❌ Not quite right.</span> The correct answer is: <strong>${correctLabels.join(", ")}</strong><br>${example.explanation}`;
           
@@ -663,26 +653,35 @@
               const el = document.getElementById(label);
               if (el) el.checked = correctLabels.includes(label);
           });
-          
-          setTimeout(() => {
-              if (tutorialIndex < tutorialExamples.length - 1) {
-                  tutorialIndex++;
-                  displayTutorialExample();
-              } else {
-                  finishTutorial();
-              }
-          }, 4000);
+      }
+      
+      // Show the "Next Example" button if not the last example
+      if (tutorialIndex < tutorialExamples.length - 1) {
+          document.getElementById("nextExampleBtn").style.display = "inline-block";
+      } else {
+          // Change the "Next" button to "Start Real Annotation" for the last example
+          document.getElementById("nextBtn").innerText = "Start Real Annotation";
+      }
+  }
+
+  function nextTutorialExample() {
+      if (tutorialIndex < tutorialExamples.length - 1) {
+          tutorialIndex++;
+          displayTutorialExample();
+      } else {
+          finishTutorial();
       }
   }
 
   async function finishTutorial() {
-      inTutorial = false;
-      document.getElementById("nextBtn").innerText = "Next";
-      document.getElementById("prevBtn").innerText = "Previous";
-      document.getElementById("prevBtn").style.display = "inline-block";
-      
+      inTutorial = false; // Set the tutorial flag to false
+      document.getElementById("nextBtn").style.display = "none"; // Hide the "Check Answer" button
+      document.getElementById("prevBtn").style.display = "none"; // Hide the "Previous Example" button
+      document.getElementById("nextExampleBtn").style.display = "none"; // Hide the "Next Example" button
+
       document.getElementById("status").innerHTML = `<strong>🎯 Great job! Tutorial complete.</strong> Now you'll begin the real annotation task...`;
-      
+
+      // Initialize the annotation session
       await initializeSession();
   }
   async function initializeSession() {
