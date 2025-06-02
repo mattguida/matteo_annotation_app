@@ -396,9 +396,9 @@
 <div id="name-modal" class="modal">
     <div class="modal-content name-input-content">
         <h2>Welcome to the Annotation Interface!</h2>
-        <p>Please enter your name to begin:</p>
+        <p>Please enter your name to begin the practice phase:</p>
         <input type="text" id="annotator-name" placeholder="Your Name">
-        <button onclick="startAnnotation()" class="start-btn">Start Annotating</button>
+        <button onclick="startAnnotation()" class="start-btn">Start Practice</button>
     </div>
 </div>
 
@@ -447,7 +447,7 @@
     <p><strong>None</strong><br>
     Description: If the sentence is not framed in any of the proposed labels above, please select this label.<br>
 
-    <h3>📚 Annotation Examples</h3>
+    <h3>📚 Practice Examples</h3>
 
     <div class="example-container">
       <strong>Example 1: Economic Framing</strong>
@@ -601,7 +601,7 @@
   function startTutorial() {
       inTutorial = true;
       tutorialIndex = 0;
-      document.getElementById("status").innerHTML = `<strong>📚 Tutorial Mode</strong> - Practice with examples before starting annotation`;
+      document.getElementById("status").innerHTML = `<strong>📚 Practice Phase: Example ${tutorialIndex + 1} of 3</strong><br>Read the sentence and select the frame(s) you think apply, then click "Check Answer"`;
       displayTutorialExample();
   }
 
@@ -617,11 +617,14 @@
       });
       
       // Update button text for tutorial
-      document.getElementById("nextBtn").innerText = tutorialIndex === tutorialExamples.length - 1 ? "Start Real Annotation" : "Check Answer";
+      document.getElementById("nextBtn").innerText = "Check Answer";
       document.getElementById("prevBtn").style.display = tutorialIndex === 0 ? "none" : "inline-block";
       if (tutorialIndex > 0) {
           document.getElementById("prevBtn").innerText = "Previous Example";
       }
+      
+      // Update status to show current example
+      document.getElementById("status").innerHTML = `<strong>📚 Practice Phase: Example ${tutorialIndex + 1} of 3</strong><br>Read the sentence and select the frame(s) you think apply, then click "Check Answer"`;
   }
 
   function checkTutorialAnswer() {
@@ -636,18 +639,9 @@
                        selectedLabels.every(label => correctLabels.includes(label));
       
       if (isCorrect) {
-          document.getElementById("status").innerHTML = `<span style="color: green;">✅ Correct!</span> ${example.explanation}`;
-          
-          setTimeout(() => {
-              if (tutorialIndex < tutorialExamples.length - 1) {
-                  tutorialIndex++;
-                  displayTutorialExample();
-              } else {
-                  finishTutorial();
-              }
-          }, 3000);
+          document.getElementById("status").innerHTML = `<span style="color: green; font-size: 1.2em;">✅ Correct!</span><br><strong>Explanation:</strong> ${example.explanation}`;
       } else {
-          document.getElementById("status").innerHTML = `<span style="color: red;">❌ Not quite right.</span> The correct answer is: <strong>${correctLabels.join(", ")}</strong><br>${example.explanation}`;
+          document.getElementById("status").innerHTML = `<span style="color: red; font-size: 1.2em;">❌ Not quite right.</span><br><strong>The correct answer is:</strong> ${correctLabels.join(", ")}<br><strong>Explanation:</strong> ${example.explanation}`;
           
           // Show correct answer
           const labels = getAllLabels();
@@ -655,16 +649,17 @@
               const el = document.getElementById(label);
               if (el) el.checked = correctLabels.includes(label);
           });
-          
-          setTimeout(() => {
-              if (tutorialIndex < tutorialExamples.length - 1) {
-                  tutorialIndex++;
-                  displayTutorialExample();
-              } else {
-                  finishTutorial();
-              }
-          }, 4000);
       }
+      
+      // Change button to "Next Example" or "Start Annotation"
+      if (tutorialIndex < tutorialExamples.length - 1) {
+          document.getElementById("nextBtn").innerText = "Next Example";
+      } else {
+          document.getElementById("nextBtn").innerText = "Start Real Annotation";
+      }
+      
+      // Set a flag to track that we've shown the answer
+      document.getElementById("nextBtn").setAttribute('data-answered', 'true');
   }
 
   async function finishTutorial() {
@@ -673,10 +668,11 @@
       document.getElementById("prevBtn").innerText = "Previous";
       document.getElementById("prevBtn").style.display = "inline-block";
       
-      document.getElementById("status").innerHTML = `<strong>🎯 Great! Tutorial complete.</strong> Starting real annotation...`;
+      document.getElementById("status").innerHTML = `<strong>🎯 Great! Practice complete.</strong> Starting real annotation...`;
       
       await initializeSession();
   }
+  
   async function initializeSession() {
       try {
           console.log("Initializing session...");
@@ -809,7 +805,22 @@
 
   async function nextSentence() {
       if (inTutorial) {
-          checkTutorialAnswer();
+          // Check if we've already shown the answer for this example
+          const hasAnswered = document.getElementById("nextBtn").getAttribute('data-answered') === 'true';
+          
+          if (!hasAnswered) {
+              // First click - check the answer
+              checkTutorialAnswer();
+          } else {
+              // Second click - move to next example or finish tutorial
+              if (tutorialIndex < tutorialExamples.length - 1) {
+                  tutorialIndex++;
+                  document.getElementById("nextBtn").removeAttribute('data-answered');
+                  displayTutorialExample();
+              } else {
+                  finishTutorial();
+              }
+          }
           return;
       }
       
@@ -821,33 +832,4 @@
       } else {
           document.getElementById("sentence").innerText = "🎉 You have finished annotating all sentences. 🎉 Thank you! You may now close this window.";
           document.getElementById("labels").style.display = "none";
-          document.getElementById("nextBtn").style.display = "none";
-          document.getElementById("prevBtn").style.display = "none";
-          document.getElementById("status").innerText = "";
-      }
-  }
-
-  async function prevSentence() {
-    if (inTutorial) {
-        if (tutorialIndex > 0) {
-            tutorialIndex--;
-            displayTutorialExample();
-        }
-        return;
-    }
-    
-    await saveAnnotation();
-    if (currentIndex > 0) {
-      currentIndex--;
-      displaySentence();
-    }
-  }
-
-  document.getElementById("nextBtn").addEventListener("click", nextSentence);
-  document.getElementById("prevBtn").addEventListener("click", prevSentence);
-
-  // Start the application
-  // initializeSession();
-</script>
-</body>
-</html>
+          document.getElementByI

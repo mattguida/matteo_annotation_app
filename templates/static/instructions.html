@@ -138,24 +138,37 @@
   <button onclick="showBlock(6)">Continue</button>
 </div>
 
-<!-- Final notes and Start button -->
+<!-- New Practice Block -->
 <div id="block6" class="instructions-block" style="display:none;">
+  <h2>Practice Phase</h2>
+  <p>Before starting the actual annotation task, we'll practice together with three examples.</p>
+  <p>During the practice phase:</p>
+  <p>• You will be shown <strong>one sentence at a time</strong></p>
+  <p>• You should <strong>select the appropriate frame label(s)</strong> by clicking on the colored boxes</p>
+  <p>• After you make your selection, the <strong>correct answer will appear underneath with an explanation</strong>.</p>
+  <p> Take your time to read each sentence carefully and consider which perspective or angle is being emphasized.</p>
+  <button onclick="showBlock(5)">Go Back</button>
+  <button onclick="showBlock(7)">Continue</button>
+</div>
+
+<!-- Final notes and Start button -->
+<div id="block7" class="instructions-block" style="display:none;">
   <p>If you have any questions, please contact me at <a href="mailto:guida@student.unimelb.edu.au">guida@student.unimelb.edu.au</a>.</p>
   <p>For more information regarding the framing labels and theory, please refer to this <a href="https://minio.la.utexas.edu/compagendas/codebookfiles/Policy_Frames_Codebook.pdf" target="_blank">Codebook</a> and this <a href="https://aclanthology.org/P15-2072.pdf" target="_blank">paper</a>.</p>
   <p>Happy annotating!</p>
-  <button onclick="showBlock(5)">Go Back</button>
-  <button onclick="startAnnotation()">Start Annotation</button>
+  <button onclick="showBlock(6)">Go Back</button>
+  <button onclick="startAnnotation()">Start Practice</button>
 </div>
 
 <script>
   function showBlock(n) {
-    for (let i = 1; i <= 6; i++) {
+    for (let i = 1; i <= 7; i++) {
       document.getElementById('block' + i).style.display = i === n ? 'block' : 'none';
     }
   }
 
   function startAnnotation() {
-    window.location.href = '/annotate'; // Update this to your actual path
+    window.location.href = '/practice'; // Update this to your actual practice path
   }
 </script>
 
