@@ -548,6 +548,26 @@
   let annotatorId = null;
   let datasetFile = null;
   let annotatorName = null;
+  let inTutorial = false;
+  let tutorialIndex = 0;
+  
+  const tutorialExamples = [
+    {
+      sentence: "Government spending in and of itself is not a bad thing.",
+      correctLabels: ["Economic"],
+      explanation: "This sentence clearly frames an issue through an economic lens by directly discussing government spending and its financial implications. It presents a monetary/financial perspective on policy, which is the core of economic framing."
+    },
+    {
+      sentence: "Deliberate destruction of subpoenaed evidence is felony obstruction of justice.",
+      correctLabels: ["Legality_Crime"],
+      explanation: "This sentence frames the issue through legal constraints and criminal law by referencing specific legal violations, criminal charges, and judicial processes. It focuses on law enforcement and legal consequences."
+    },
+    {
+      sentence: "A 2010 QMI poll found that 71.6 per cent of Canadians outside Quebec say they're very attached to Canada.",
+      correctLabels: ["Public_Opinion"],
+      explanation: "This sentence frames an issue through public opinion by directly citing polling data and demographic information about social attitudes."
+    }
+  ];
 
   // Function to open modal with framing categories
   function openModal() {
@@ -575,10 +595,88 @@
       }
       
       document.getElementById('name-modal').style.display = 'none';
-      await initializeSession();
+      startTutorial();
   }
 
-  // Initialize session first
+  function startTutorial() {
+      inTutorial = true;
+      tutorialIndex = 0;
+      document.getElementById("status").innerHTML = `<strong>📚 Tutorial Mode</strong> - Practice with examples before starting annotation`;
+      displayTutorialExample();
+  }
+
+  function displayTutorialExample() {
+      const example = tutorialExamples[tutorialIndex];
+      document.getElementById("sentence").innerText = example.sentence;
+      
+      // Clear all checkboxes
+      const labels = getAllLabels();
+      labels.forEach(label => {
+        const el = document.getElementById(label);
+        if (el) el.checked = false;
+      });
+      
+      // Update button text for tutorial
+      document.getElementById("nextBtn").innerText = tutorialIndex === tutorialExamples.length - 1 ? "Start Real Annotation" : "Check Answer";
+      document.getElementById("prevBtn").style.display = tutorialIndex === 0 ? "none" : "inline-block";
+      if (tutorialIndex > 0) {
+          document.getElementById("prevBtn").innerText = "Previous Example";
+      }
+  }
+
+  function checkTutorialAnswer() {
+      const example = tutorialExamples[tutorialIndex];
+      const selectedLabels = getAllLabels().filter(label => {
+          const el = document.getElementById(label);
+          return el && el.checked;
+      });
+      
+      const correctLabels = example.correctLabels;
+      const isCorrect = selectedLabels.length === correctLabels.length && 
+                       selectedLabels.every(label => correctLabels.includes(label));
+      
+      if (isCorrect) {
+          document.getElementById("status").innerHTML = `<span style="color: green;">✅ Correct!</span> ${example.explanation}`;
+          
+          setTimeout(() => {
+              if (tutorialIndex < tutorialExamples.length - 1) {
+                  tutorialIndex++;
+                  displayTutorialExample();
+              } else {
+                  finishTutorial();
+              }
+          }, 3000);
+      } else {
+          document.getElementById("status").innerHTML = `<span style="color: red;">❌ Not quite right.</span> The correct answer is: <strong>${correctLabels.join(", ")}</strong><br>${example.explanation}`;
+          
+          // Show correct answer
+          const labels = getAllLabels();
+          labels.forEach(label => {
+              const el = document.getElementById(label);
+              if (el) el.checked = correctLabels.includes(label);
+          });
+          
+          setTimeout(() => {
+              if (tutorialIndex < tutorialExamples.length - 1) {
+                  tutorialIndex++;
+                  displayTutorialExample();
+              } else {
+                  finishTutorial();
+              }
+          }, 4000);
+      }
+  }
+
+  async function finishTutorial() {
+      inTutorial = false;
+      document.getElementById("nextBtn").innerText = "Next";
+      document.getElementById("prevBtn").innerText = "Previous";
+      document.getElementById("prevBtn").style.display = "inline-block";
+      
+      document.getElementById("status").innerHTML = `<strong>🎯 Great! Tutorial complete.</strong> Starting real annotation...`;
+      
+      await initializeSession();
+  }
   async function initializeSession() {
       try {
           console.log("Initializing session...");
@@ -710,6 +808,11 @@
   });
 
   async function nextSentence() {
+      if (inTutorial) {
+          checkTutorialAnswer();
+          return;
+      }
+      
       await saveAnnotation();
 
       if (currentIndex < SENTENCES_PER_ANNOTATOR - 1) {
@@ -725,6 +828,14 @@
   }
 
   async function prevSentence() {
+    if (inTutorial) {
+        if (tutorialIndex > 0) {
+            tutorialIndex--;
+            displayTutorialExample();
+        }
+        return;
+    }
+    
     await saveAnnotation();
     if (currentIndex > 0) {
       currentIndex--;
