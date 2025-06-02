@@ -619,7 +619,7 @@
       document.getElementById("status").innerHTML = `<strong>📚 Let's practice with some examples before starting annotation!`;
       displayTutorialExample();
   }
-  
+
   function displayTutorialExample() {
       const example = tutorialExamples[tutorialIndex];
       document.getElementById("sentence").innerText = example.sentence;
@@ -631,6 +631,9 @@
         if (el) el.checked = false;
       });
       
+      // Clear the explanation text
+      document.getElementById("status").innerText = "";
+
       // Show tutorial-specific buttons
       document.getElementById("checkAnswerBtn").style.display = "inline-block";
       document.getElementById("nextExampleBtn").style.display = "none";
