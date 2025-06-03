@@ -547,15 +547,8 @@
   const SENTENCES_PER_ANNOTATOR = 30;
 
   window.onload = function() {
-    if (localStorage.getItem('instructionsRead') === 'true') {
-      // Clear the flag so it only works once
-      localStorage.removeItem('instructionsRead');
-      // Start the tutorial immediately
-      startTutorial();
-    } else {
-      // Show the name input modal as before
-      document.getElementById('name-modal').style.display = 'flex';
-    }
+    // Always show the name input modal first
+    document.getElementById('name-modal').style.display = 'flex';
   }
   let sentences = [];
   let currentIndex = 0;
