@@ -193,8 +193,19 @@ async def save_annotation(payload: dict):
     sentence = payload.get("sentence")
     label = payload.get("label")
     
+    # Debug logging
+    print(f"Received payload: annotator_id={annotator_id}, annotator_name={annotator_name}, sentence length={len(sentence) if sentence else 0}")
+    
     if not all([annotator_id, annotator_name, sentence, label is not None]):
-        return {"error": "Missing required fields: annotator_id, annotator_name, sentence, label"}
+        missing_fields = []
+        if not annotator_id: missing_fields.append("annotator_id")
+        if not annotator_name: missing_fields.append("annotator_name")
+        if not sentence: missing_fields.append("sentence")
+        if label is None: missing_fields.append("label")
+        
+        error_msg = f"Missing required fields: {', '.join(missing_fields)}"
+        print(f"Error: {error_msg}")
+        return {"error": error_msg}
     
     try:
         # Check if annotation already exists for this annotator and sentence
@@ -205,7 +216,9 @@ async def save_annotation(payload: dict):
             .execute()
         
         annotation_data = {
+            "annotator_id": annotator_id,
             "annotator_name": annotator_name,
+            "sentence": sentence,
             "label": label,
             "timestamp": datetime.datetime.now().isoformat()
         }
@@ -220,18 +233,13 @@ async def save_annotation(payload: dict):
             action = "updated"
         else:
             # Insert new annotation
-            annotation_record = {
-                "annotator_id": annotator_id,
-                "annotator_name": annotator_name,
-                "sentence": sentence,
-                "label": label,
-                "timestamp": datetime.datetime.now().isoformat()
-            }
-            supabase.table("annotations").insert(annotation_record).execute()
+            supabase.table("annotations").insert(annotation_data).execute()
             action = "created"
     
     except Exception as e:
-        return {"error": f"Failed to save annotation: {str(e)}"}
+        error_msg = f"Failed to save annotation: {str(e)}"
+        print(f"Database error: {error_msg}")
+        return {"error": error_msg}
     
     return {
         "status": "saved", 
