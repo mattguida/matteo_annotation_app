@@ -14,19 +14,14 @@ import datetime
 app = FastAPI()
 
 # Supabase configuration
-SUPABASE_URL = "https://btkqbbtcxbvdxtojmrhn.supabase.co"
-SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ0a3FiYnRjeGJ2ZHh0b2ptcmhuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDgxNzQ3MjksImV4cCI6MjA2Mzc1MDcyOX0.T-Ay_5X2U_9dnG4dtrarj85BadwHD5fGrlCA7Hpz2Og"
+SUPABASE_URL = "https://kfiwblhdbvqarwfbepan.supabase.co"
+SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtmaXdibGhkYnZxYXJ3ZmJlcGFuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDk2NzYxNTMsImV4cCI6MjA2NTI1MjE1M30.eb9v88eiOHetpVct-QOhcsDR9c99O7IcucDQ52C8APw"
+
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 
-# === Directories ===x
+# === Directories ===
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 STATIC_DIR = os.path.join(BASE_DIR, "templates", "static")
-
-# === Configuration ===
-SENTENCES_PER_ANNOTATOR = 100
-OVERLAP_COUNT = 20
-UNIQUE_COUNT = 80
-
 
 # === Mount static files ===
 app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
@@ -40,19 +35,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-def load_all_sentences():
-    """Load all sentences from the main data file"""
-    input_path = os.path.join(BASE_DIR, "templates", "data", "sample_sfu_combined.jsonl")
-    try:
-        with open(input_path) as f:
-            sentences = [json.loads(line) for line in f]
-        return sentences
-    except Exception as e:
-        print(f"Error loading sentences: {e}")
-        return []
-
 def load_session_data():
-    """Load data for the hard-coded session"""
+    """Load all sentences from annotation_session_1.jsonl"""
     file_path = os.path.join(BASE_DIR, "templates", "data", "annotation_session_1.jsonl")
     try:
         with open(file_path, 'r') as f:
@@ -63,42 +47,27 @@ def load_session_data():
         return []
 
 def create_annotator_dataset(annotator_id, annotator_name):
-    """Create a dataset for a specific annotator"""
-    all_sentences = load_all_sentences()
-    if len(all_sentences) < SENTENCES_PER_ANNOTATOR:
-        return None, f"Not enough sentences in dataset. Need {SENTENCES_PER_ANNOTATOR}, have {len(all_sentences)}"
-
-    # Load the session data
+    """Create a dataset for a specific annotator using all sentences from session file"""
     session_data = load_session_data()
     
-    # Get the overlap sentences for this session
-    overlap_sentences = session_data[:OVERLAP_COUNT]
-    if len(overlap_sentences) != OVERLAP_COUNT:
-        return None, f"Could not load overlap sentences. Expected {OVERLAP_COUNT}, got {len(overlap_sentences)}"
+    if not session_data:
+        return None, "Could not load sentences from annotation_session_1.jsonl"
 
-    # Get sentences that aren't part of the overlap
-    non_overlap_sentences = [s for s in all_sentences if s not in overlap_sentences]
-
-    # Select unique sentences for this annotator
-    unique_sentences = random.sample(non_overlap_sentences, UNIQUE_COUNT)
-
-    # Combine overlap and unique sentences
-    annotator_dataset = overlap_sentences + unique_sentences
-    random.shuffle(annotator_dataset)
-
-    # Add metadata
-    for i, sentence in enumerate(annotator_dataset):
-        sentence['sentence_id'] = f"{annotator_id}_sent{i+1}"
-        sentence['is_overlap'] = sentence in overlap_sentences
+    # Add metadata to sentences
+    annotator_dataset = []
+    for i, sentence in enumerate(session_data):
+        sentence_copy = sentence.copy()  # Don't modify original data
+        sentence_copy['sentence_id'] = f"{annotator_id}_sent{i+1}"
+        annotator_dataset.append(sentence_copy)
 
     # Save session data to Supabase
     try:
         supabase.table("annotator_sessions").insert({
             "annotator_id": annotator_id,
-            "annotator_name": annotator_name,  # Include annotator_name here
+            "annotator_name": annotator_name,
             "total_sentences": len(annotator_dataset),
-            "overlap_sentences": overlap_sentences,
-            "unique_sentences": unique_sentences,
+            "overlap_sentences": [],  # Empty since we're not using overlap logic
+            "unique_sentences": annotator_dataset,  # All sentences are unique per annotator
             "dataset": annotator_dataset,
             "created_at": datetime.datetime.now().isoformat()
         }).execute()
@@ -107,7 +76,7 @@ def create_annotator_dataset(annotator_id, annotator_name):
 
     return annotator_dataset, None
 
-# === Start annotation session - Create dynamic dataset ===
+# === Start annotation session - Create dataset from session file ===
 @app.get("/start_annotation")
 def start_annotation(name: str = Query(..., description="Annotator's name")):
     print(f"Starting annotation for {name}")
@@ -123,14 +92,11 @@ def start_annotation(name: str = Query(..., description="Annotator's name")):
     response = {
         "annotator_id": annotator_id,
         "annotator_name": name,
-        "total_sentences": SENTENCES_PER_ANNOTATOR,
-        "overlap_sentences": OVERLAP_COUNT,
-        "unique_sentences": UNIQUE_COUNT,
-        "message": f"Dataset created with {SENTENCES_PER_ANNOTATOR} sentences for {name}"
+        "total_sentences": len(dataset),
+        "message": f"Dataset created with {len(dataset)} sentences for {name}"
     }
     print(f"Annotation session started: {response}")
     return response
-
 
 # === Serve sentences for specific annotator ===
 @app.get("/api/sentences")
@@ -150,6 +116,7 @@ def get_sentences(annotator_id: str = Query(..., description="Annotator ID")):
     except Exception as e:
         print(f"Error getting sentences: {str(e)}")
         return {"error": f"Failed to load dataset: {str(e)}"}
+
 # === Save individual annotation ===
 @app.post("/api/save_annotation")
 async def save_annotation(payload: dict):
@@ -213,13 +180,10 @@ async def save_annotation(payload: dict):
         "annotator_name": annotator_name
     }
 
-
 # === Get annotation statistics ===
 @app.get("/api/stats")
 def get_annotation_stats():
-    """
-    Get statistics about annotations collected so far.
-    """
+    """Get statistics about annotations collected so far."""
     try:
         # Get total annotators
         annotators_result = supabase.table("annotator_sessions").select("annotator_id").execute()
@@ -229,12 +193,15 @@ def get_annotation_stats():
         annotations_result = supabase.table("annotations").select("id").execute()
         total_annotations = len(annotations_result.data)
         
+        # Get sentences count from session file
+        session_data = load_session_data()
+        sentences_per_annotator = len(session_data)
+        
         return {
             "total_annotators": total_annotators,
             "total_annotations": total_annotations,
             "annotations_per_annotator": total_annotations / total_annotators if total_annotators > 0 else 0,
-            "sentences_per_annotator": SENTENCES_PER_ANNOTATOR,
-            "overlap_percentage": OVERLAP_PERCENTAGE
+            "sentences_per_annotator": sentences_per_annotator
         }
         
     except Exception as e:
@@ -243,9 +210,7 @@ def get_annotation_stats():
 # === Export all annotations ===
 @app.get("/api/export_annotations")
 def export_annotations():
-    """
-    Export all annotations from Supabase for analysis.
-    """
+    """Export all annotations from Supabase for analysis."""
     try:
         result = supabase.table("annotations").select("*").execute()
         
@@ -257,38 +222,17 @@ def export_annotations():
     except Exception as e:
         return {"error": f"Failed to export annotations: {str(e)}"}
 
-# === Reset overlap sentences (admin function) ===
-@app.post("/admin/reset_overlap")
-def reset_overlap_sentences():
-    """Reset the overlap sentences (use carefully!)"""
-    try:
-        supabase.table("overlap_sentences").delete().eq("id", 1).execute()
-        return {"message": "Overlap sentences reset. Next annotator will create new overlap set."}
-        
-    except Exception as e:
-        return {"error": f"Failed to reset overlap sentences: {str(e)}"}
-
 # === Get system info ===
 @app.get("/api/system_info")
 def get_system_info():
     """Get information about the annotation system configuration"""
     try:
-        all_sentences = load_all_sentences()
-        overlap_sentences = get_or_create_overlap_sentences()
-        used_sentences = get_used_sentences()
-        
-        remaining_unique = len(all_sentences) - len(overlap_sentences) - len(used_sentences)
-        max_additional_annotators = remaining_unique // UNIQUE_COUNT
+        session_data = load_session_data()
         
         return {
-            "total_sentences_in_dataset": len(all_sentences),
-            "sentences_per_annotator": SENTENCES_PER_ANNOTATOR,
-            "overlap_sentences": OVERLAP_COUNT,
-            "unique_sentences_per_annotator": UNIQUE_COUNT,
-            "overlap_percentage": OVERLAP_COUNT / SENTENCES_PER_ANNOTATOR,
-            "sentences_already_used": len(used_sentences),
-            "remaining_unique_sentences": remaining_unique,
-            "max_additional_annotators": max_additional_annotators
+            "total_sentences_in_dataset": len(session_data),
+            "sentences_per_annotator": len(session_data),
+            "source_file": "annotation_session_1.jsonl"
         }
         
     except Exception as e:
@@ -320,4 +264,4 @@ def health_check():
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(app, host="0.0.0.0", port=8001)
