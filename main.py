@@ -51,34 +51,27 @@ def load_all_sentences():
         return []
 
 def load_session_data():
-    """Load data for all three sessions"""
-    sessions = []
-    for i in range(1, 4):
-        file_path = f'annotation_session_{i}.jsonl'
-        try:
-            with open(file_path, 'r') as f:
-                data = [json.loads(line) for line in f]
-            sessions.append(data)
-        except Exception as e:
-            print(f"Error loading session {i}: {e}")
-            sessions.append([])
-    return sessions
+    """Load data for the hard-coded session"""
+    file_path = os.path.join(BASE_DIR, "templates", "data", "annotation_session_1.jsonl")
+    try:
+        with open(file_path, 'r') as f:
+            data = [json.loads(line) for line in f]
+        return data
+    except Exception as e:
+        print(f"Error loading session: {e}")
+        return []
 
-# Load session data at startup
-SESSION_DATA = load_session_data()
-
-def create_annotator_dataset(annotator_id, annotator_name):
+def create_annotator_dataset(annotator_id):
     """Create a dataset for a specific annotator"""
     all_sentences = load_all_sentences()
     if len(all_sentences) < SENTENCES_PER_ANNOTATOR:
         return None, f"Not enough sentences in dataset. Need {SENTENCES_PER_ANNOTATOR}, have {len(all_sentences)}"
 
-    # Determine which session to use based on the number of existing annotators
-    existing_annotators = len(supabase.table("annotator_sessions").select("annotator_id").execute().data)
-    session_index = existing_annotators % 3
-
+    # Load the session data
+    session_data = load_session_data()
+    
     # Get the overlap sentences for this session
-    overlap_sentences = SESSION_DATA[session_index][:OVERLAP_COUNT]
+    overlap_sentences = session_data[:OVERLAP_COUNT]
     if len(overlap_sentences) != OVERLAP_COUNT:
         return None, f"Could not load overlap sentences. Expected {OVERLAP_COUNT}, got {len(overlap_sentences)}"
 
@@ -101,8 +94,6 @@ def create_annotator_dataset(annotator_id, annotator_name):
     try:
         supabase.table("annotator_sessions").insert({
             "annotator_id": annotator_id,
-            "annotator_name": annotator_name,
-            "session_number": session_index + 1,
             "total_sentences": len(annotator_dataset),
             "overlap_sentences": overlap_sentences,
             "unique_sentences": unique_sentences,
@@ -121,7 +112,7 @@ def start_annotation(name: str = Query(..., description="Annotator's name")):
     annotator_id = str(uuid.uuid4())
 
     # Create dataset for this annotator
-    dataset, error = create_annotator_dataset(annotator_id, name)
+    dataset, error = create_annotator_dataset(annotator_id)
 
     if error:
         print(f"Error creating dataset: {error}")
@@ -129,7 +120,6 @@ def start_annotation(name: str = Query(..., description="Annotator's name")):
 
     response = {
         "annotator_id": annotator_id,
-        "annotator_name": name,
         "total_sentences": SENTENCES_PER_ANNOTATOR,
         "overlap_sentences": OVERLAP_COUNT,
         "unique_sentences": UNIQUE_COUNT,
@@ -137,6 +127,7 @@ def start_annotation(name: str = Query(..., description="Annotator's name")):
     }
     print(f"Annotation session started: {response}")
     return response
+
 
 # === Serve sentences for specific annotator ===
 @app.get("/api/sentences")
