@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 STATIC_DIR = os.path.join(BASE_DIR, "templates", "static")
 
 # === Configuration ===
-SENTENCES_PER_ANNOTATOR = 30
-OVERLAP_COUNT = 10
-UNIQUE_COUNT = 20
+SENTENCES_PER_ANNOTATOR = 100
+OVERLAP_COUNT = 20
+UNIQUE_COUNT = 80
 
 
 # === Mount static files ===
