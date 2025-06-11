@@ -443,8 +443,19 @@
 <div id="name-modal" class="modal">
     <div class="modal-content name-input-content">
         <h2>Welcome to the Annotation Interface!</h2>
-        <p>Please enter your name to begin:</p>
+        <p>Please enter your name and select a session to begin:</p>
         <input type="text" id="annotator-name" placeholder="Your Name">
+        
+        <div style="margin: 20px 0;">
+            <label for="session-select" style="display: block; margin-bottom: 8px; font-weight: bold;">Select Session:</label>
+            <select id="session-select" style="width: 100%; padding: 10px; border: 2px solid #e0e0e0; border-radius: 6px; font-size: 16px;">
+                <option value="">Choose a session...</option>
+                <option value="1">Session 1</option>
+                <option value="2">Session 2</option>
+                <option value="3">Session 3</option>
+            </select>
+        </div>
+        
         <button onclick="startAnnotation()" class="start-btn">Start Annotating</button>
     </div>
 </div>
@@ -616,11 +627,13 @@
 <div id="status"></div>
 
 <script>
-  const SENTENCES_PER_ANNOTATOR = 30;
+  const SENTENCES_PER_ANNOTATOR = 100;
 
   window.onload = function() {
-    // Always show the name input modal first
-    document.getElementById('name-modal').style.display = 'flex';
+      // Always show the name input modal first
+      document.getElementById('name-modal').style.display = 'flex';
+      // Load session availability
+      loadSessionStatus();
   }
   let sentences = [];
   let currentIndex = 0;
@@ -683,14 +696,43 @@
 
   async function startAnnotation() {
       annotatorName = document.getElementById('annotator-name').value.trim();
+      const sessionId = document.getElementById('session-select').value;
+      
       if (!annotatorName) {
           alert("Please enter your name.");
           return;
       }
       
+      if (!sessionId) {
+          alert("Please select a session.");
+          return;
+      }
+      
       document.getElementById('name-modal').style.display = 'none';
-      startTutorial();
+      document.getElementById("status").innerHTML = `<strong>Starting session ${sessionId}...`;
+      
+      try {
+          // Check if session is available
+          const sessionRes = await fetch(`/start_annotation?name=${encodeURIComponent(annotatorName)}&session_id=${sessionId}`);
+          const sessionData = await sessionRes.json();
+          
+          if (sessionData.error) {
+              alert(`Error: ${sessionData.error}`);
+              document.getElementById('name-modal').style.display = 'flex';
+              return;
+          }
+          
+          // Store session info globally
+          window.sessionInfo = sessionData;
+          startTutorial();
+          
+      } catch (error) {
+          console.error("Error starting session:", error);
+          alert("Error starting session. Please try again.");
+          document.getElementById('name-modal').style.display = 'flex';
+      }
   }
+
 
   function startTutorial() {
       inTutorial = true;
@@ -788,22 +830,56 @@
   document.getElementById("checkAnswerBtn").addEventListener("click", checkTutorialAnswer);
   document.getElementById("nextExampleBtn").addEventListener("click", nextTutorialExample);
   document.getElementById("startAnnotationBtn").addEventListener("click", finishTutorial);
-  
+
+  async function loadSessionStatus() {
+      try {
+          const res = await fetch('/api/session_status');
+          const data = await res.json();
+          
+          if (data.sessions) {
+              const select = document.getElementById('session-select');
+              // Clear existing options except the first one
+              while (select.children.length > 1) {
+                  select.removeChild(select.lastChild);
+              }
+              
+              // Add options with availability info
+              data.sessions.forEach(session => {
+                  const option = document.createElement('option');
+                  option.value = session.session_id;
+                  const status = session.is_full ? ' (Full)' : ` (${session.annotators_assigned}/${session.max_annotators} annotators)`;
+                  option.textContent = `Session ${session.session_id}${status}`;
+                  option.disabled = session.is_full;
+                  select.appendChild(option);
+              });
+          }
+      } catch (error) {
+          console.log("Could not load session status:", error);
+      }
+  }
+
   async function initializeSession() {
       try {
-          console.log("Initializing session...");
-          const res = await fetch(`/start_annotation?name=${encodeURIComponent(annotatorName)}`);
-          if (!res.ok) throw new Error("Failed to start annotation session");
-          const sessionData = await res.json();
-          console.log("Session data:", sessionData);
-          annotatorId = sessionData.annotator_id;
+          console.log("Initializing session with stored info...");
+          
+          // Use the session info we stored earlier
+          if (!window.sessionInfo) {
+              throw new Error("No session info found");
+          }
+          
+          annotatorId = window.sessionInfo.annotator_id;
           document.getElementById("annotator-id").value = annotatorId;
-          document.getElementById("dataset-name").value = `${sessionData.total_sentences} sentences (${sessionData.overlap_sentences} overlap + ${sessionData.unique_sentences} unique)`;
+          document.getElementById("dataset-name").value = `Session ${window.sessionInfo.session_id} - ${window.sessionInfo.total_sentences} sentences (${window.sessionInfo.overlap_sentences} overlap + ${window.sessionInfo.unique_sentences} unique)`;
+          
+          // Update status
+          document.getElementById("status").innerHTML = `<strong>📝 Session ${window.sessionInfo.session_id} - Position ${window.sessionInfo.annotator_position}</strong><br>Loading your sentences...`;
+          
           // Now load sentences
           await loadSentences();
       } catch (error) {
           console.error("Error in initializeSession:", error);
           document.getElementById("sentence").innerText = "Error starting annotation session.";
+          document.getElementById("status").innerText = "Error: " + error.message;
       }
   }
 
