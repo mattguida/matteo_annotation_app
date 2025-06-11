@@ -39,6 +39,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 def load_all_sentences():
     """Load all sentences from the main data file"""
     input_path = os.path.join(BASE_DIR, "templates", "data", "sample_sfu_combined.jsonl")
@@ -61,7 +62,7 @@ def load_session_data():
         print(f"Error loading session: {e}")
         return []
 
-def create_annotator_dataset(annotator_id):
+def create_annotator_dataset(annotator_id, annotator_name):
     """Create a dataset for a specific annotator"""
     all_sentences = load_all_sentences()
     if len(all_sentences) < SENTENCES_PER_ANNOTATOR:
@@ -94,6 +95,7 @@ def create_annotator_dataset(annotator_id):
     try:
         supabase.table("annotator_sessions").insert({
             "annotator_id": annotator_id,
+            "annotator_name": annotator_name,  # Include annotator_name here
             "total_sentences": len(annotator_dataset),
             "overlap_sentences": overlap_sentences,
             "unique_sentences": unique_sentences,
@@ -112,7 +114,7 @@ def start_annotation(name: str = Query(..., description="Annotator's name")):
     annotator_id = str(uuid.uuid4())
 
     # Create dataset for this annotator
-    dataset, error = create_annotator_dataset(annotator_id)
+    dataset, error = create_annotator_dataset(annotator_id, name)
 
     if error:
         print(f"Error creating dataset: {error}")
@@ -120,6 +122,7 @@ def start_annotation(name: str = Query(..., description="Annotator's name")):
 
     response = {
         "annotator_id": annotator_id,
+        "annotator_name": name,
         "total_sentences": SENTENCES_PER_ANNOTATOR,
         "overlap_sentences": OVERLAP_COUNT,
         "unique_sentences": UNIQUE_COUNT,
