@@ -36,8 +36,8 @@ app.add_middleware(
 )
 
 def load_session_data():
-    """Load all sentences from annotation_session_1.jsonl"""
-    file_path = os.path.join(BASE_DIR, "templates", "data", "annotation_session_1.jsonl")
+    """Load all sentences from annotation_session_2.jsonl"""
+    file_path = os.path.join(BASE_DIR, "templates", "data", "annotation_session_2.jsonl")
     try:
         with open(file_path, 'r') as f:
             data = [json.loads(line) for line in f]
@@ -51,7 +51,7 @@ def create_annotator_dataset(annotator_id, annotator_name):
     session_data = load_session_data()
     
     if not session_data:
-        return None, "Could not load sentences from annotation_session_1.jsonl"
+        return None, "Could not load sentences from annotation_session_2.jsonl"
 
     # Add metadata to sentences
     annotator_dataset = []
@@ -232,7 +232,7 @@ def get_system_info():
         return {
             "total_sentences_in_dataset": len(session_data),
             "sentences_per_annotator": len(session_data),
-            "source_file": "annotation_session_1.jsonl"
+            "source_file": "annotation_session_2.jsonl"
         }
         
     except Exception as e:
