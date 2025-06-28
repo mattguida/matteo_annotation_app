@@ -306,7 +306,7 @@
     background: #0288d1;
   }
 
-  label[for="None"] {
+  label[for="Other"] {
     background: #546e7a;
     width: 150px;
     justify-content: center;
@@ -597,8 +597,8 @@
   <label for="Cultural_Identity">Cultural Identity</label>
 
   <div class="none-container">
-    <input type="checkbox" id="None" />
-    <label for="None">Other</label>
+    <input type="checkbox" id="Other" />
+    <label for="Other">Other</label>
   </div>
 
 </div>
@@ -891,15 +891,15 @@
       "Morality",
       "Political_Policies",
       "Cultural_Identity",
-      "None"
+      "Other"
     ];
   }
 
   // Handle "None" checkbox logic
-  document.getElementById("None").addEventListener("change", function () {
+  document.getElementById("Other").addEventListener("change", function () {
     if (this.checked) {
       getAllLabels().forEach(label => {
-        if (label !== "None") {
+        if (label !== "Other") {
           const el = document.getElementById(label);
           if (el) el.checked = false;
         }
@@ -910,10 +910,10 @@
   // Handle other checkboxes unchecking "None"
   getAllLabels().forEach(label => {
     const el = document.getElementById(label);
-    if (el && label !== "None") {
+    if (el && label !== "Other") {
       el.addEventListener("change", function () {
         if (this.checked) {
-          document.getElementById("None").checked = false;
+          document.getElementById("Other").checked = false;
         }
       });
     }
